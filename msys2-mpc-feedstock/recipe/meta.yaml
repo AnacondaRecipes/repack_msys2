@@ -30,7 +30,6 @@ build:
 outputs:
   - name: msys2-mpc
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -46,17 +45,22 @@ outputs:
         - msys2-gmp                                >=5.0        # gmp>=5.0
         - msys2-mpfr                               >=4.2.1      # mpfr
         - msys2-msys2-runtime                      >=3.4.10     # msys-2.0.dll
+      run_constrained:
+        - m2-mpc                                    <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-mpc-3.dll                         # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\msys-mpc-3.dll EXIT /B 1         # [win]
     about:
       home: http://www.multiprecision.org
-      summary: "Multiple precision complex arithmetic library [repack of MSYS2-packages mpc for MSYS]"
-      license: "LGPL-3.0-or-later"
+      summary: "Multiple precision complex arithmetic library (repack of MSYS2-packages mpc for MSYS)"
+      license: LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSER
   - name: msys2-mpc-devel
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -68,11 +72,17 @@ outputs:
         - msys2-mpc                                 =1.3.1      # mpc=1.3.1
         - msys2-gmp-devel                          >=6.3.0      # gmp-devel
         - msys2-mpfr-devel                         >=4.2.1      # mpfr-devel
+      run_constrained:
+        - m2-mpc-devel                              <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/mpc.h                              # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\include\mpc.h EXIT /B 1              # [win]
     about:
       home: http://www.multiprecision.org
-      summary: "Multiple precision complex arithmetic library [repack of MSYS2-packages mpc-devel for MSYS]"
-      license: "LGPL-3.0-or-later"
+      summary: "Multiple precision complex arithmetic library (repack of MSYS2-packages mpc-devel for MSYS)"
+      license: LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSER

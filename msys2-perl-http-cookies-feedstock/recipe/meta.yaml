@@ -27,7 +27,6 @@ build:
 outputs:
   - name: msys2-perl-http-cookies
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -39,11 +38,17 @@ outputs:
         - msys2-perl                               >=5.8.8      # perl>=5.8.8
         - msys2-perl-http-date                     >=6          # perl-HTTP-Date>=6
         - msys2-perl-http-message                  >=6.45       # perl-HTTP-Message
+      run_constrained:
+        - m2-perl-http-cookies                      <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Cookies.3pm.gz         # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\share\man\man3\HTTP.Cookies.3pm.gz EXIT /B 1 # [win]
     about:
       home: https://metacpan.org/release/HTTP-Cookies
-      summary: "HTTP cookie jars [repack of MSYS2-packages perl-HTTP-Cookies for MSYS]"
-      license: "GPL-1.0-or-later OR Artistic-1.0-Perl"
+      summary: "HTTP cookie jars (repack of MSYS2-packages perl-HTTP-Cookies for MSYS)"
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE

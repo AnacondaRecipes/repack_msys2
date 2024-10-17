@@ -30,7 +30,6 @@ build:
 outputs:
   - name: msys2-libxcrypt
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -42,17 +41,23 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
         - msys2-msys2-runtime                      >=3.4.10     # msys-2.0.dll
+      run_constrained:
+        - m2-libxcrypt                              <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-crypt-2.dll                       # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\msys-crypt-2.dll EXIT /B 1       # [win]
     about:
       home: https://github.com/besser82/libxcrypt/
-      summary: "Modern library for one-way hashing of passwords [repack of MSYS2-packages libxcrypt for MSYS]"
-      license: "LGPL-2.1-or-later"
+      summary: "Modern library for one-way hashing of passwords (repack of MSYS2-packages libxcrypt for MSYS)"
+      license: LGPL-2.1-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/LICENSING
   - name: msys2-libxcrypt-devel
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -62,11 +67,18 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libxcrypt                           =4.4.36     # libxcrypt=4.4.36
+      run_constrained:
+        - m2-libxcrypt-devel                        <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/crypt.h                            # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\include\crypt.h EXIT /B 1            # [win]
     about:
       home: https://github.com/besser82/libxcrypt/
-      summary: "Modern library for one-way hashing of passwords [repack of MSYS2-packages libxcrypt-devel for MSYS]"
-      license: "LGPL-2.1-or-later"
+      summary: "Modern library for one-way hashing of passwords (repack of MSYS2-packages libxcrypt-devel for MSYS)"
+      license: LGPL-2.1-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/LICENSING

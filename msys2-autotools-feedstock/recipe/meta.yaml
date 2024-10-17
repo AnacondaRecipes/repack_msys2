@@ -27,7 +27,6 @@ build:
 outputs:
   - name: msys2-autotools
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -42,9 +41,15 @@ outputs:
         - msys2-libtool                            >=2.4.7      # libtool
         - msys2-make                               >=4.4.1      # make
         - msys2-pkgconf                            >=2.1.0      # pkgconf
+      run_constrained:
+        - m2-autotools                              <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
     about:
       home: https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html
-      summary: "A meta package for the GNU autotools build system [repack of MSYS2-packages autotools for MSYS]"
-      license: "GPL-1.0-or-later"
+      summary: "A meta package for the GNU autotools build system (repack of MSYS2-packages autotools for MSYS)"
+      license: GPL-1.0-or-later
+      license_url:
+        - https://spdx.org/licenses/GPL-1.0-or-later.html

@@ -30,7 +30,6 @@ build:
 outputs:
   - name: ucrt64-libiconv
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -50,17 +49,22 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
+      run_constrained:
+        - m2w64-libiconv                            <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/ucrt64/bin/libcharset-1.dll                    # [unix]
         - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\libcharset-1.dll EXIT /B 1    # [win]
     about:
       home: https://www.gnu.org/software/libiconv/
-      summary: "Character encoding conversion library and utility (mingw-w64) [repack of MINGW-packages libiconv for UCRT64]"
-      license: "GPL-3.0-or-later AND LGPL-2.1-or-later"
+      summary: "Character encoding conversion library and utility (mingw-w64) (repack of MINGW-packages libiconv for UCRT64)"
+      license: GPL-3.0 AND LGPL-2.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
   - name: ucrt64-iconv
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -86,6 +90,9 @@ outputs:
         - msys2-mingw-w64-mutex * ucrt64
         - ucrt64-libiconv                           =1.17       # mingw-w64-ucrt-x86_64-libiconv=1.17-4
         - ucrt64-gettext-runtime                   >=0.22.5     # mingw-w64-ucrt-x86_64-gettext-runtime
+      run_constrained:
+        - m2w64-iconv                               <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/ucrt64/bin/iconv.exe                           # [unix]
@@ -93,5 +100,8 @@ outputs:
         - iconv --help                                                           # [win and x86_64]
     about:
       home: https://www.gnu.org/software/libiconv/
-      summary: "Character encoding conversion library and utility (mingw-w64) [repack of MINGW-packages iconv for UCRT64]"
-      license: "GPL-3.0-or-later AND LGPL-2.1-or-later"
+      summary: "Character encoding conversion library and utility (mingw-w64) (repack of MINGW-packages iconv for UCRT64)"
+      license: GPL-3.0 AND LGPL-2.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB

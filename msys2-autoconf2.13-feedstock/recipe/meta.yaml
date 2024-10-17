@@ -27,7 +27,6 @@ build:
 outputs:
   - name: msys2-autoconf2.13
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -41,11 +40,17 @@ outputs:
         - msys2-diffutils                          >=3.10       # diffutils
         - msys2-bash                               >=5.2.026    # bash
         - msys2-perl                               >=5.38.2     # perl
+      run_constrained:
+        - m2-autoconf2.13                           <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/autoconf-2.13                          # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\autoconf-2.13 EXIT /B 1          # [win]
     about:
       home: https://www.gnu.org/software/autoconf
-      summary: "A GNU tool for automatically configuring source code [repack of MSYS2-packages autoconf2.13 for MSYS]"
-      license: "GNU General Public License v3 or later"
+      summary: "A GNU tool for automatically configuring source code (repack of MSYS2-packages autoconf2.13 for MSYS)"
+      license: GNU General Public License v3 or later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING

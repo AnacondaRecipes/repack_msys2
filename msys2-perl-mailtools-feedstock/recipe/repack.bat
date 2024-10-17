@@ -20,7 +20,7 @@ del /f /q %src%\.PKGINFO
 @REM .PKGINFO should exist because we read it earlier and therefore
 @REM something has gone badly wrong in the packaging if it is not here
 @REM now
-if errorlevel 1 exit %ERRORLEVEL%
+if errorlevel 1 exit /b %ERRORLEVEL%
 
 @REM .INSTALL often doesn't exist
 del /f /q %src%\.INSTALL

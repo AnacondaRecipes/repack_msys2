@@ -8,5 +8,4 @@ build:
   string: mingw64
 
 about:
-  summary: "A mutex package to ensure environment exclusivity between MSYS2 mingw-w64 environments"
-  license: "BSD-3-Clause"
+  summary: A mutex package to ensure environment exclusivity between MSYS2 mingw-w64 environments

@@ -8,5 +8,4 @@ build:
   string: gfw
 
 about:
-  summary: "A mutex package to ensure environment exclusivity between MSYS2 MSYS environments"
-  license: "BSD-3-Clause"
+  summary: A mutex package to ensure environment exclusivity between MSYS2 MSYS environments

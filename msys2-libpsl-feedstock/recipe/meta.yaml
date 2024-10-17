@@ -30,7 +30,6 @@ build:
 outputs:
   - name: msys2-libpsl
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -49,6 +48,10 @@ outputs:
         - msys2-libunistring                       >=1.1        # libunistring
         - msys2-msys2-runtime                      >=3.4.10     # msys-2.0.dll
         - msys2-libiconv                           >=1.17       # msys-iconv-2.dll
+      run_constrained:
+        - m2-libpsl                                 <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-psl-5.dll                         # [unix]
@@ -56,11 +59,13 @@ outputs:
         - psl --help                                                             # [win and x86_64]
     about:
       home: https://github.com/rockdaboot/libpsl
-      summary: "Public Suffix List library [repack of MSYS2-packages libpsl for MSYS]"
-      license: "MIT"
+      summary: "Public Suffix List library (repack of MSYS2-packages libpsl for MSYS)"
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
   - name: msys2-libpsl-devel
     skip: True          # [not (win and x86_64)]
-    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
       number: {{ build_number }}
@@ -72,11 +77,18 @@ outputs:
         - msys2-libpsl                              =0.21.5     # libpsl=0.21.5
         - msys2-libidn2-devel                      >=2.3.7      # libidn2-devel
         - msys2-libunistring                       >=1.1        # libunistring
+      run_constrained:
+        - m2-libpsl-devel                           <0a0
+        - m2-msys2-runtime                          <0a0
+
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/libpsl.h                           # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\include\libpsl.h EXIT /B 1           # [win]
     about:
       home: https://github.com/rockdaboot/libpsl
-      summary: "Public Suffix List library [repack of MSYS2-packages libpsl-devel for MSYS]"
-      license: "MIT"
+      summary: "Public Suffix List library (repack of MSYS2-packages libpsl-devel for MSYS)"
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE

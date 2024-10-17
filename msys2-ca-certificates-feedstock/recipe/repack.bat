@@ -20,7 +20,7 @@ del /f /q %src%\.PKGINFO
 @REM .PKGINFO should exist because we read it earlier and therefore
 @REM something has gone badly wrong in the packaging if it is not here
 @REM now
-if errorlevel 1 exit %ERRORLEVEL%
+if errorlevel 1 exit /b %ERRORLEVEL%
 
 @REM .INSTALL often doesn't exist
 del /f /q %src%\.INSTALL
@@ -33,8 +33,8 @@ if %ERRORLEVEL% GEQ 8 exit 1
 
 @set "SCRIPTS_DIR=%PREFIX%\Scripts"
 if not exist %SCRIPTS_DIR% mkdir %SCRIPTS_DIR%
-if errorlevel 1 exit /b %errorlevel%
+if errorlevel 1 exit /b %ERRORLEVEL%
 
 copy "%RECIPE_DIR%\post-link.bat" "%SCRIPTS_DIR%\.msys2-ca-certificates-post-link.bat"
-if errorlevel 1 exit /b %errorlevel%
+if errorlevel 1 exit /b %ERRORLEVEL%
 
