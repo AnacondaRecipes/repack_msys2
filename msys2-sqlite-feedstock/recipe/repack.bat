@@ -5,6 +5,11 @@ echo "Building %PKG_NAME%"
 
 set src="%SRC_DIR%\%PKG_NAME%"
 
+if not exist %src%\ (
+    echo repack.bat: missing source folder %src%
+    exit /b 1
+)
+
 @REM activate.py will set the user's PATH to:
 @REM
 @REM (old) PREFIX/Library/mingw-w64/bin:PREFIX/Library/usr/bin:PREFIX/Library/bin:
