@@ -52,7 +52,7 @@ outputs:
         - msys2-gdbm >=1.26
         - msys2-libxcrypt >=4.5.2
         - msys2-coreutils >=8.32
-        - msys2-sh
+        - msys2-bash >=5.3.015
       run_constrained:
         - m2-perl                                   <0a0
     test:

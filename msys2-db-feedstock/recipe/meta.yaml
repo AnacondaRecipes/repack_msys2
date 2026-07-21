@@ -117,7 +117,7 @@ outputs:
     requirements:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-sh
+        - msys2-bash >=5.3.015
       run_constrained:
         - m2-db-docs                                   <0a0
     test:

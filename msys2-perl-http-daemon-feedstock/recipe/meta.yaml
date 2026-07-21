@@ -35,7 +35,6 @@ outputs:
         - msys2-perl >=5.42.2
         - msys2-perl-http-date >=6.07
         - msys2-perl-http-message >=7.02
-        - msys2-perl-io-socket-ip
         - msys2-perl-lwp-mediatypes >=6.04
       run_constrained:
         - m2-perl-HTTP-Daemon                                   <0a0

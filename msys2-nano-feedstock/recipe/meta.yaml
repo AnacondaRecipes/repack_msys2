@@ -37,7 +37,7 @@ outputs:
         - msys2-file >=5.48
         - msys2-libintl >=0.22.5
         - msys2-ncurses >=6.6
-        - msys2-sh
+        - msys2-bash >=5.3.015
       run_constrained:
         - m2-nano                                   <0a0
     test:

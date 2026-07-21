@@ -34,7 +34,7 @@ outputs:
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-cc-libs
+        - clangarm64-libcxx >=22.1.8
       run_constrained:
         - m2w64-tools                                 <0a0
     test:
