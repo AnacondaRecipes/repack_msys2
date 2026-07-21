@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-libxcrypt" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/libxcrypt/PKGBUILD
+{% set pkgname = "libxcrypt" %}
 {% set pkgver = "4.5.2" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-libxcrypt
   version: {{ pkgver }}
 
 source:
@@ -35,10 +36,13 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-libxcrypt                             <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-crypt-2.dll                       # [unix]
@@ -57,11 +61,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libxcrypt =4.5.2
+        - msys2-libxcrypt =4.5.2                   # libxcrypt=4.5.2
       run_constrained:
         - m2-libxcrypt-devel                       <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/crypt.h                            # [unix]

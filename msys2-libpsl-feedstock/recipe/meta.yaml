@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-libpsl" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/libpsl/PKGBUILD
+{% set pkgname = "libpsl" %}
 {% set pkgver = "0.21.5" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-libpsl
   version: {{ pkgver }}
 
 source:
@@ -35,12 +36,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libidn2 >=2.3.8
-        - msys2-libunistring >=1.4.2
+        - msys2-libidn2 >=2.3.8                    # libidn2
+        - msys2-libunistring >=1.4.2               # libunistring
       run_constrained:
         - m2-libpsl                                <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-psl-5.dll                         # [unix]
@@ -60,13 +64,16 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libpsl =0.21.5
-        - msys2-libidn2-devel >=2.3.8
-        - msys2-libunistring >=1.4.2
+        - msys2-libpsl =0.21.5                     # libpsl=0.21.5
+        - msys2-libidn2-devel >=2.3.8              # libidn2-devel
+        - msys2-libunistring >=1.4.2               # libunistring
       run_constrained:
         - m2-libpsl-devel                          <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/libpsl.h                           # [unix]

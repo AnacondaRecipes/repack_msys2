@@ -3,22 +3,23 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_mingw-w64-xz" %}
+# https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-xz/PKGBUILD
+{% set pkgname = "xz" %}
 {% set pkgver = "5.8.3" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_mingw-w64-xz
   version: {{ pkgver }}
 
 source:
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: ucrt64-xz
-    sha256: 840af0192f4b67be09238e783249c78cc1672981e7d0acc5c67a6bd0b4bca0cb
-  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: clangarm64-xz
-    sha256: ca31204e434ad924d5ee76744dfae5a82a8ca6e76f7947d512715ee42d1dff80
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
+    folder: ucrt64-xz # [win and x86_64]
+    sha256: 840af0192f4b67be09238e783249c78cc1672981e7d0acc5c67a6bd0b4bca0cb # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and arm64]
+    folder: clangarm64-xz # [win and arm64]
+    sha256: ca31204e434ad924d5ee76744dfae5a82a8ca6e76f7947d512715ee42d1dff80 # [win and arm64]
 
 build:
   number: {{ build_number }}
@@ -35,9 +36,11 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-gettext-runtime
+        - ucrt64-gettext-runtime                   # mingw-w64-ucrt-x86_64-gettext-runtime
       run_constrained:
         - m2w64-xz                                 <0a0
     test:
@@ -68,11 +71,11 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-gettext-runtime >=1.0
-      run_constrained:
-        - m2w64-xz                                 <0a0
+        - clangarm64-gettext-runtime >=1.0         # mingw-w64-clang-aarch64-gettext-runtime
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/liblzma-5.dll                   # [unix]

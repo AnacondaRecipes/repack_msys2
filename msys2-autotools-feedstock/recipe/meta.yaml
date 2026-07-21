@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-autotools" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/autotools/PKGBUILD
+{% set pkgname = "autotools" %}
 {% set pkgver = "2022.01.16" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-autotools
   version: {{ pkgver }}
 
 source:
@@ -30,16 +31,19 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-autoconf-wrapper >=20260320
-        - msys2-automake-wrapper >=20260320
-        - msys2-gettext >=0.22.5
-        - msys2-libtool >=2.5.4
-        - msys2-make >=4.4.1
-        - msys2-pkgconf >=2.5.1
+        - msys2-autoconf-wrapper >=20260320        # autoconf-wrapper
+        - msys2-automake-wrapper >=20260320        # automake-wrapper
+        - msys2-gettext >=0.22.5                   # gettext
+        - msys2-libtool >=2.5.4                    # libtool
+        - msys2-make >=4.4.1                       # make
+        - msys2-pkgconf >=2.5.1                    # pkgconf
       run_constrained:
         - m2-autotools                             <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
     about:

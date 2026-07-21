@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-ncurses" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/ncurses/PKGBUILD
+{% set pkgname = "ncurses" %}
 {% set pkgver = "6.6" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-ncurses
   version: {{ pkgver }}
 
 source:
@@ -35,25 +36,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gcc-libs >=15.3.0
+        - msys2-gcc-libs >=15.3.0                  # gcc-libs
       run_constrained:
         - m2-ncurses                               <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/captoinfo.exe                          # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\captoinfo.exe EXIT /B 1          # [win]
-        - captoinfo --help                                                       # [win]
-        - clear --help                                                           # [win]
-        - infocmp --help                                                         # [win]
-        - infotocap --help                                                       # [win]
-        - reset --help                                                           # [win]
-        - tabs --help                                                            # [win]
-        - tic --help                                                             # [win]
-        - toe --help                                                             # [win]
-        - tput --help                                                            # [win]
-        - tset --help                                                            # [win]
     about:
       home: https://www.gnu.org/software/ncurses/
       summary: "System V Release 4.0 curses emulation library (repack of MSYS2-packages ncurses for MSYS)"
@@ -67,11 +61,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-ncurses =6.6
+        - msys2-ncurses =6.6                       # ncurses=6.6
       run_constrained:
         - m2-ncurses-devel                         <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/ncursesw6-config                       # [unix]

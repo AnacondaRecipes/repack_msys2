@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-curl" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/curl/PKGBUILD
+{% set pkgname = "curl" %}
 {% set pkgver = "8.21.0" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-curl
   version: {{ pkgver }}
 
 source:
@@ -38,19 +39,22 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-ca-certificates >=20250419
-        - msys2-libcurl >=8.21.0
-        - msys2-libnghttp3 >=1.17.0
-        - msys2-libngtcp2 >=1.24.0
-        - msys2-libunistring >=1.4.2
-        - msys2-libnghttp2 >=1.69.0
-        - msys2-libpsl >=0.21.5
-        - msys2-openssl >=3.6.3
-        - msys2-zlib >=1.3.2
+        - msys2-ca-certificates >=20250419         # ca-certificates
+        - msys2-libcurl >=8.21.0                   # libcurl
+        - msys2-libnghttp3 >=1.17.0                # libnghttp3
+        - msys2-libngtcp2 >=1.24.0                 # libngtcp2
+        - msys2-libunistring >=1.4.2               # libunistring
+        - msys2-libnghttp2 >=1.69.0                # libnghttp2
+        - msys2-libpsl >=0.21.5                    # libpsl
+        - msys2-openssl >=3.6.3                    # openssl
+        - msys2-zlib >=1.3.2                       # zlib
       run_constrained:
         - m2-curl                                  <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/curl.exe                               # [unix]
@@ -71,22 +75,25 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-brotli >=1.2.0
-        - msys2-ca-certificates >=20250419
-        - msys2-libidn2 >=2.3.8
-        - msys2-libnghttp3 >=1.17.0
-        - msys2-libngtcp2 >=1.24.0
-        - msys2-libunistring >=1.4.2
-        - msys2-libnghttp2 >=1.69.0
-        - msys2-libpsl >=0.21.5
-        - msys2-libssh2 >=1.11.1
-        - msys2-openssl >=3.6.3
-        - msys2-zlib >=1.3.2
-        - msys2-libzstd >=1.5.7
+        - msys2-brotli >=1.2.0                     # brotli
+        - msys2-ca-certificates >=20250419         # ca-certificates
+        - msys2-libidn2 >=2.3.8                    # libidn2
+        - msys2-libnghttp3 >=1.17.0                # libnghttp3
+        - msys2-libngtcp2 >=1.24.0                 # libngtcp2
+        - msys2-libunistring >=1.4.2               # libunistring
+        - msys2-libnghttp2 >=1.69.0                # libnghttp2
+        - msys2-libpsl >=0.21.5                    # libpsl
+        - msys2-libssh2 >=1.11.1                   # libssh2
+        - msys2-openssl >=3.6.3                    # openssl
+        - msys2-zlib >=1.3.2                       # zlib
+        - msys2-libzstd >=1.5.7                    # libzstd
       run_constrained:
         - m2-libcurl                               <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-curl-4.dll                        # [unix]
@@ -104,21 +111,24 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libcurl =8.21.0
-        - msys2-brotli-devel >=1.2.0
-        - msys2-libidn2-devel >=2.3.8
-        - msys2-libnghttp3-devel >=1.17.0
-        - msys2-libngtcp2-devel >=1.24.0
-        - msys2-libunistring-devel >=1.4.2
-        - msys2-libnghttp2-devel >=1.69.0
-        - msys2-libpsl-devel >=0.21.5
-        - msys2-libssh2-devel >=1.11.1
-        - msys2-openssl-devel >=3.6.3
-        - msys2-zlib-devel >=1.3.2
+        - msys2-libcurl =8.21.0                    # libcurl=8.21.0
+        - msys2-brotli-devel >=1.2.0               # brotli-devel
+        - msys2-libidn2-devel >=2.3.8              # libidn2-devel
+        - msys2-libnghttp3-devel >=1.17.0          # libnghttp3-devel
+        - msys2-libngtcp2-devel >=1.24.0           # libngtcp2-devel
+        - msys2-libunistring-devel >=1.4.2         # libunistring-devel
+        - msys2-libnghttp2-devel >=1.69.0          # libnghttp2-devel
+        - msys2-libpsl-devel >=0.21.5              # libpsl-devel
+        - msys2-libssh2-devel >=1.11.1             # libssh2-devel
+        - msys2-openssl-devel >=3.6.3              # openssl-devel
+        - msys2-zlib-devel >=1.3.2                 # zlib-devel
       run_constrained:
         - m2-libcurl-devel                         <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/curl-config                            # [unix]

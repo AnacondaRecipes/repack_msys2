@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-gzip" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/gzip/PKGBUILD
+{% set pkgname = "gzip" %}
 {% set pkgver = "1.14" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-gzip
   version: {{ pkgver }}
 
 source:
@@ -32,12 +33,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
-        - msys2-less >=704
+        - msys2-bash >=5.3.015                     # bash
+        - msys2-less >=704                         # less
       run_constrained:
         - m2-gzip                                  <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/gunzip                                 # [unix]

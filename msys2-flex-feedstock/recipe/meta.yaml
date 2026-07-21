@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-flex" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/flex/PKGBUILD
+{% set pkgname = "flex" %}
 {% set pkgver = "2.6.4" %}
 {% set pkgrel = "4" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-flex
   version: {{ pkgver }}
 
 source:
@@ -32,14 +33,17 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-m4 >=1.4.21
-        - msys2-bash >=5.3.015
-        - msys2-libiconv >=1.19
-        - msys2-libintl >=0.22.5
+        - msys2-m4 >=1.4.21                        # m4
+        - msys2-bash >=5.3.015                     # sh
+        - msys2-libiconv >=1.19                    # libiconv
+        - msys2-libintl >=0.22.5                   # libintl
       run_constrained:
         - m2-flex                                  <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/flex++.exe                             # [unix]

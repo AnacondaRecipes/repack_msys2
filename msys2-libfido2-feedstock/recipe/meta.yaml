@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-libfido2" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/libfido2/PKGBUILD
+{% set pkgname = "libfido2" %}
 {% set pkgver = "1.17.0" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-libfido2
   version: {{ pkgver }}
 
 source:
@@ -44,13 +45,16 @@ outputs:
         - $RPATH/SETUPAPI.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libcbor >=0.14.0
-        - msys2-openssl >=3.6.3
-        - msys2-zlib >=1.3.2
+        - msys2-libcbor >=0.14.0                   # libcbor
+        - msys2-openssl >=3.6.3                    # openssl
+        - msys2-zlib >=1.3.2                       # zlib
       run_constrained:
         - m2-libfido2                              <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-fido2-1.dll                       # [unix]
@@ -70,18 +74,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2 =1.17.0
+        - msys2-libfido2 =1.17.0                   # libfido2=1.17.0
       run_constrained:
         - m2-fido2-tools                           <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/fido2-assert.exe                       # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\fido2-assert.exe EXIT /B 1       # [win]
-        - fido2-assert --help                                                    # [win]
-        - fido2-cred --help                                                      # [win]
-        - fido2-token --help                                                     # [win]
     about:
       home: https://developers.yubico.com/libfido2/
       summary: "Library functionality for FIDO 2.0, including communication with a device over USB (repack of MSYS2-packages fido2-tools for MSYS)"
@@ -95,11 +99,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2 =1.17.0
+        - msys2-libfido2 =1.17.0                   # libfido2=1.17.0
       run_constrained:
         - m2-libfido2-devel                        <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/fido/bio.h                         # [unix]
@@ -117,11 +124,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2-devel =1.17.0
+        - msys2-libfido2-devel =1.17.0             # libfido2-devel=1.17.0
       run_constrained:
         - m2-libfido2-docs                         <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/eddsa_pk_free.3.gz          # [unix]

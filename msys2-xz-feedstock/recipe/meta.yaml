@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-xz" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/xz/PKGBUILD
+{% set pkgname = "xz" %}
 {% set pkgver = "5.8.3" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-xz
   version: {{ pkgver }}
 
 source:
@@ -38,13 +39,16 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-liblzma >=5.8.3
-        - msys2-libiconv >=1.19
-        - msys2-libintl >=0.22.5
+        - msys2-liblzma >=5.8.3                    # liblzma
+        - msys2-libiconv >=1.19                    # libiconv
+        - msys2-libintl >=0.22.5                   # libintl
       run_constrained:
         - m2-xz                                    <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/lzcat.exe                              # [unix]
@@ -76,10 +80,13 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-liblzma                               <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-lzma-5.dll                        # [unix]
@@ -100,13 +107,16 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-liblzma >=5.8.3
-        - msys2-libiconv-devel >=1.19
-        - msys2-gettext-devel >=0.22.5
+        - msys2-liblzma >=5.8.3                    # liblzma
+        - msys2-libiconv-devel >=1.19              # libiconv-devel
+        - msys2-gettext-devel >=0.22.5             # gettext-devel
       run_constrained:
         - m2-liblzma-devel                         <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/lzma/base.h                        # [unix]

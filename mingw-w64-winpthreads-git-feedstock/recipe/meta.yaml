@@ -3,28 +3,29 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_mingw-w64-winpthreads-git" %}
+# https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-winpthreads/PKGBUILD
+{% set pkgname = "winpthreads" %}
 {% set pkgver = "14.0.0.r147.g31bd54ab7" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_mingw-w64-winpthreads-git
   version: {{ pkgver }}
 
 source:
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-winpthreads-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: ucrt64-winpthreads
-    sha256: f1158f06d0dc7f6f484aededb9148d7cae3fa17c8df42e26b7cb3a66a5765bb7
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libwinpthread-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: ucrt64-libwinpthread
-    sha256: 234569316343f0a78bdcad8dc10506c365b375181ef17e1f578db5842c7f4c01
-  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-winpthreads-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: clangarm64-winpthreads
-    sha256: 999e8bdfd30a954b7c740b5c7dd92d92f6a0c4b9a3d45e36dcf3e7f2d24816f5
-  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-libwinpthread-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: clangarm64-libwinpthread
-    sha256: a60f957c182d84d6c846ea29b4cbae1bb8e9494a25a00f60654e00627ea5c64a
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-winpthreads-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
+    folder: ucrt64-winpthreads # [win and x86_64]
+    sha256: f1158f06d0dc7f6f484aededb9148d7cae3fa17c8df42e26b7cb3a66a5765bb7 # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libwinpthread-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
+    folder: ucrt64-libwinpthread # [win and x86_64]
+    sha256: 234569316343f0a78bdcad8dc10506c365b375181ef17e1f578db5842c7f4c01 # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-winpthreads-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and arm64]
+    folder: clangarm64-winpthreads # [win and arm64]
+    sha256: 999e8bdfd30a954b7c740b5c7dd92d92f6a0c4b9a3d45e36dcf3e7f2d24816f5 # [win and arm64]
+  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-libwinpthread-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and arm64]
+    folder: clangarm64-libwinpthread # [win and arm64]
+    sha256: a60f957c182d84d6c846ea29b4cbae1bb8e9494a25a00f60654e00627ea5c64a # [win and arm64]
 
 build:
   number: {{ build_number }}
@@ -39,10 +40,12 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-crt
-        - ucrt64-libwinpthread =14.0.0.r147.g31bd54ab7
+        - ucrt64-crt                               # mingw-w64-ucrt-x86_64-crt
+        - ucrt64-libwinpthread =14.0.0.r147.g31bd54ab7 # mingw-w64-ucrt-x86_64-libwinpthread=14.0.0.r147.g31bd54ab7
       run_constrained:
         - m2w64-winpthreads                        <0a0
     test:
@@ -66,6 +69,8 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
       run_constrained:
@@ -89,12 +94,12 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-crt >=14.0.0.r147.g31bd54ab7
-        - clangarm64-libwinpthread =14.0.0.r147.g31bd54ab7
-      run_constrained:
-        - m2w64-winpthreads                        <0a0
+        - clangarm64-crt >=14.0.0.r147.g31bd54ab7  # mingw-w64-clang-aarch64-crt
+        - clangarm64-libwinpthread =14.0.0.r147.g31bd54ab7 # mingw-w64-clang-aarch64-libwinpthread=14.0.0.r147.g31bd54ab7
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/include/pthread.h                   # [unix]
@@ -116,10 +121,10 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-      run_constrained:
-        - m2w64-libwinpthread                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libwinpthread-1.dll             # [unix]

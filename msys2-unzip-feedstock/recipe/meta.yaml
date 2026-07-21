@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-unzip" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/unzip/PKGBUILD
+{% set pkgname = "unzip" %}
 {% set pkgver = "6.0" %}
 {% set pkgrel = "3" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-unzip
   version: {{ pkgver }}
 
 source:
@@ -32,12 +33,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libbz2 >=1.0.8
-        - msys2-bash >=5.3.015
+        - msys2-libbz2 >=1.0.8                     # libbz2
+        - msys2-bash >=5.3.015                     # bash
       run_constrained:
         - m2-unzip                                 <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/funzip.exe                             # [unix]

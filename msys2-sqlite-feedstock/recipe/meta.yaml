@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-sqlite" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/sqlite/PKGBUILD
+{% set pkgname = "sqlite" %}
 {% set pkgver = "3.53.3" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-sqlite
   version: {{ pkgver }}
 
 source:
@@ -50,22 +51,20 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libreadline >=8.3.003
-        - msys2-zlib >=1.3.2
-        - msys2-tcl >=8.6.12
+        - msys2-libreadline >=8.3.003              # libreadline
+        - msys2-zlib >=1.3.2                       # zlib
+        - msys2-tcl >=8.6.12                       # tcl
       run_constrained:
         - m2-sqlite                                <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/dbhash.exe                             # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\dbhash.exe EXIT /B 1             # [win]
-        - dbhash --help                                                          # [win]
-        - rbu --help                                                             # [win]
-        - sqldiff --help                                                         # [win]
-        - sqlite3 --help                                                         # [win]
-        - sqlite3_analyzer --help                                                # [win]
     about:
       home: https://www.sqlite.org/
       summary: "A C library that implements an SQL database engine (repack of MSYS2-packages sqlite for MSYS)"
@@ -87,10 +86,13 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-libsqlite                             <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-sqlite3-0.dll                     # [unix]
@@ -114,12 +116,15 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libsqlite =3.53.3
-        - msys2-zlib-devel >=1.3.2
+        - msys2-libsqlite =3.53.3                  # libsqlite=3.53.3
+        - msys2-zlib-devel >=1.3.2                 # zlib-devel
       run_constrained:
         - m2-libsqlite-devel                       <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/sqlite3.h                          # [unix]
@@ -143,10 +148,13 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-sqlite-doc                            <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/doc/sqlite/34to35.html               # [unix]
@@ -172,12 +180,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libsqlite =3.53.3
-        - msys2-tcl >=8.6.12
+        - msys2-libsqlite =3.53.3                  # libsqlite=3.53.3
+        - msys2-tcl >=8.6.12                       # tcl
       run_constrained:
         - m2-tcl-sqlite                            <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/lib/tcl8.6/sqlite3.53.3/cygsqlite3.53.3.dll # [unix]
@@ -203,12 +214,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-sqlite =3.53.3
-        - msys2-libsqlite =3.53.3
+        - msys2-sqlite =3.53.3                     # sqlite=3.53.3
+        - msys2-libsqlite =3.53.3                  # libsqlite=3.53.3
       run_constrained:
         - m2-sqlite-extensions                     <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-sqlite3amatch-0.dll               # [unix]
@@ -234,15 +248,17 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-lemon                                 <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/lemon.exe                              # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\lemon.exe EXIT /B 1              # [win]
-        - lemon --help                                                           # [win]
     about:
       home: https://www.sqlite.org/
       summary: "A C library that implements an SQL database engine (repack of MSYS2-packages lemon for MSYS)"

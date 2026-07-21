@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-libevent" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/libevent/PKGBUILD
+{% set pkgname = "libevent" %}
 {% set pkgver = "2.1.12" %}
 {% set pkgrel = "4" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-libevent
   version: {{ pkgver }}
 
 source:
@@ -37,11 +38,14 @@ outputs:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/SHELL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-openssl >=3.6.3
+        - msys2-openssl >=3.6.3                    # openssl
       run_constrained:
         - m2-libevent                              <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/event_rpcgen.py                        # [unix]
@@ -59,12 +63,15 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libevent =2.1.12
-        - msys2-openssl-devel >=3.6.3
+        - msys2-libevent =2.1.12                   # libevent=2.1.12
+        - msys2-openssl-devel >=3.6.3              # openssl-devel
       run_constrained:
         - m2-libevent-devel                        <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/evdns.h                            # [unix]

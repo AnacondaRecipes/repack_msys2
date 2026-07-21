@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-msys2-runtime" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/msys2-runtime/PKGBUILD
+{% set pkgname = "msys2-runtime" %}
 {% set pkgver = "3.6.9" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-msys2-runtime
   version: {{ pkgver }}
 
 source:
@@ -46,6 +47,8 @@ outputs:
         - $RPATH/msvcrt.dll                                  # [win]
         - $RPATH/ntdll.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
@@ -66,6 +69,26 @@ outputs:
         - getprocaddr64 --help                                                   # [win]
         - gmondump --help                                                        # [win]
         - kill --help                                                            # [win]
+        - ldd --help                                                             # [win]
+        - ldh --help                                                             # [win]
+        - locale --help                                                          # [win]
+        - lsattr --help                                                          # [win]
+        - minidumper --help                                                      # [win]
+        - mkgroup --help                                                         # [win]
+        - mkpasswd --help                                                        # [win]
+        - mount --help                                                           # [win]
+        - newgrp --help                                                          # [win]
+        - passwd --help                                                          # [win]
+        - pldd --help                                                            # [win]
+        - profiler --help                                                        # [win]
+        - ps --help                                                              # [win]
+        - regtool --help                                                         # [win]
+        - setfacl --help                                                         # [win]
+        - setmetamode --help                                                     # [win]
+        - ssp --help                                                             # [win]
+        - strace --help                                                          # [win]
+        - tzset --help                                                           # [win]
+        - umount --help                                                          # [win]
     about:
       home: https://www.cygwin.com/
       summary: "Cygwin POSIX emulation engine (repack of MSYS2-packages msys2-runtime for MSYS)"
@@ -82,11 +105,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-runtime =3.6.9
+        - msys2-runtime =3.6.9                     # msys2-runtime=3.6.9
       run_constrained:
         - m2-msys2-runtime-devel                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-2.0.dbg                           # [unix]

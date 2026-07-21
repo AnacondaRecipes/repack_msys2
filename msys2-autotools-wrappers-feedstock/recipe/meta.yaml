@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-autotools-wrappers" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/autotools-wrappers/PKGBUILD
+{% set pkgname = "automake-wrapper" %}
 {% set pkgver = "20260320" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-autotools-wrappers
   version: {{ pkgver }}
 
 source:
@@ -33,20 +34,23 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
-        - msys2-gawk >=5.4.0
-        - msys2-automake1.11 >=1.11.6
-        - msys2-automake1.12 >=1.12.6
-        - msys2-automake1.13 >=1.13.4
-        - msys2-automake1.14 >=1.14.1
-        - msys2-automake1.15 >=1.15.1
-        - msys2-automake1.16 >=1.16.5
-        - msys2-automake1.17 >=1.17
-        - msys2-automake1.18 >=1.18.1
+        - msys2-bash >=5.3.015                     # bash
+        - msys2-gawk >=5.4.0                       # gawk
+        - msys2-automake1.11 >=1.11.6              # automake1.11
+        - msys2-automake1.12 >=1.12.6              # automake1.12
+        - msys2-automake1.13 >=1.13.4              # automake1.13
+        - msys2-automake1.14 >=1.14.1              # automake1.14
+        - msys2-automake1.15 >=1.15.1              # automake1.15
+        - msys2-automake1.16 >=1.16.5              # automake1.16
+        - msys2-automake1.17 >=1.17                # automake1.17
+        - msys2-automake1.18 >=1.18.1              # automake1.18
       run_constrained:
         - m2-automake-wrapper                      <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/aclocal                                # [unix]
@@ -64,17 +68,20 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
-        - msys2-sed >=4.9
-        - msys2-autoconf2.73 >=2.73
-        - msys2-autoconf2.72 >=2.72
-        - msys2-autoconf2.71 >=2.71
-        - msys2-autoconf2.69 >=2.69
-        - msys2-autoconf2.13 >=2.13
+        - msys2-bash >=5.3.015                     # bash
+        - msys2-sed >=4.9                          # sed
+        - msys2-autoconf2.73 >=2.73                # autoconf2.73
+        - msys2-autoconf2.72 >=2.72                # autoconf2.72
+        - msys2-autoconf2.71 >=2.71                # autoconf2.71
+        - msys2-autoconf2.69 >=2.69                # autoconf2.69
+        - msys2-autoconf2.13 >=2.13                # autoconf2.13
       run_constrained:
         - m2-autoconf-wrapper                      <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/autoconf                               # [unix]

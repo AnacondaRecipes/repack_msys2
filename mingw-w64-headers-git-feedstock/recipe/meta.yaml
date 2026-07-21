@@ -3,22 +3,23 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_mingw-w64-headers-git" %}
+# https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-headers/PKGBUILD
+{% set pkgname = "headers" %}
 {% set pkgver = "14.0.0.r147.g31bd54ab7" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_mingw-w64-headers-git
   version: {{ pkgver }}
 
 source:
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-headers-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: ucrt64-headers
-    sha256: 63e3a8bce603fdb9b4f93e8b7306fc99253e00328c46d8d61abb928fd5a355e5
-  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-headers-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: clangarm64-headers
-    sha256: f152da58681e1b07d222b15eb8ade0e371d8169a01f7ed48ee69886205feb60d
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-headers-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
+    folder: ucrt64-headers # [win and x86_64]
+    sha256: 63e3a8bce603fdb9b4f93e8b7306fc99253e00328c46d8d61abb928fd5a355e5 # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-headers-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and arm64]
+    folder: clangarm64-headers # [win and arm64]
+    sha256: f152da58681e1b07d222b15eb8ade0e371d8169a01f7ed48ee69886205feb60d # [win and arm64]
 
 build:
   number: {{ build_number }}
@@ -33,6 +34,8 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
       run_constrained:
@@ -46,6 +49,10 @@ outputs:
       summary: "MinGW-w64 headers for Windows (mingw-w64) (repack of MINGW-packages headers for UCRT64)"
       license: ZPL-2.1 AND LGPL-2.1-or-later
       license_file:
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING.MinGW-w64-runtime.txt
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING.MinGW-w64.txt
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/ddk-readme.txt
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING.MinGW-w64-runtime.txt
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING.MinGW-w64.txt
@@ -57,10 +64,10 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-      run_constrained:
-        - m2w64-headers                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/include/_bsd_types.h                # [unix]
@@ -70,6 +77,10 @@ outputs:
       summary: "MinGW-w64 headers for Windows (mingw-w64) (repack of MINGW-packages headers for CLANGARM64)"
       license: ZPL-2.1 AND LGPL-2.1-or-later
       license_file:
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING.MinGW-w64-runtime.txt
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/COPYING.MinGW-w64.txt
+        - {{ RECIPE_DIR }}/src_licenses/clangarm64/share/licenses/headers/ddk-readme.txt
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING.MinGW-w64-runtime.txt
         - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/headers/COPYING.MinGW-w64.txt

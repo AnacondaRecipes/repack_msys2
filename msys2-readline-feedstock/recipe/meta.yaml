@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-readline" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/readline/PKGBUILD
+{% set pkgname = "libreadline" %}
 {% set pkgver = "8.3.003" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-readline
   version: {{ pkgver }}
 
 source:
@@ -36,11 +37,14 @@ outputs:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-ncurses >=6.6
+        - msys2-ncurses >=6.6                      # ncurses
       run_constrained:
         - m2-libreadline                           <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-history8.dll                      # [unix]
@@ -58,12 +62,15 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libreadline =8.3.003
-        - msys2-ncurses-devel >=6.6
+        - msys2-libreadline =8.3.003               # libreadline=8.3.003
+        - msys2-ncurses-devel >=6.6                # ncurses-devel
       run_constrained:
         - m2-libreadline-devel                     <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/readline/chardefs.h                # [unix]

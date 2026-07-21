@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-perl-convert-binhex" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/perl-convert-binhex/PKGBUILD
+{% set pkgname = "perl-convert-binhex" %}
 {% set pkgver = "1.125" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-perl-convert-binhex
   version: {{ pkgver }}
 
 source:
@@ -30,11 +31,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-perl >=5.42.2
+        - msys2-perl >=5.42.2                      # perl
       run_constrained:
         - m2-perl-convert-binhex                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/vendor_perl/binhex.pl                  # [unix]

@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-windows-default-manifest" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/windows-default-manifest/PKGBUILD
+{% set pkgname = "windows-default-manifest" %}
 {% set pkgver = "6.4" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-windows-default-manifest
   version: {{ pkgver }}
 
 source:
@@ -30,10 +31,13 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-windows-default-manifest              <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/lib/default-manifest.o                     # [unix]

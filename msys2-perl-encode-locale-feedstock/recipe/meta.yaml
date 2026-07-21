@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-perl-encode-locale" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/perl-encode-locale/PKGBUILD
+{% set pkgname = "perl-encode-locale" %}
 {% set pkgver = "1.05" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-perl-encode-locale
   version: {{ pkgver }}
 
 source:
@@ -30,11 +31,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-perl >=5.008
+        - msys2-perl >=5.008                       # perl>=5.008
       run_constrained:
         - m2-perl-encode-locale                    <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/Encode.Locale.3pm.gz        # [unix]

@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-tar" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/tar/PKGBUILD
+{% set pkgname = "tar" %}
 {% set pkgver = "1.35" %}
 {% set pkgrel = "3" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-tar
   version: {{ pkgver }}
 
 source:
@@ -32,13 +33,16 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libiconv >=1.19
-        - msys2-libintl >=0.22.5
-        - msys2-bash >=5.3.015
+        - msys2-libiconv >=1.19                    # libiconv
+        - msys2-libintl >=0.22.5                   # libintl
+        - msys2-bash >=5.3.015                     # sh
       run_constrained:
         - m2-tar                                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/backup                                 # [unix]

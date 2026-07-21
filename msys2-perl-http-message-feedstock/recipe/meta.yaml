@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-perl-http-message" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/perl-http-message/PKGBUILD
+{% set pkgname = "perl-http-message" %}
 {% set pkgver = "7.02" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-perl-http-message
   version: {{ pkgver }}
 
 source:
@@ -30,17 +31,20 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-perl >=5.8.8
-        - msys2-perl-clone >=0.50
-        - msys2-perl-encode-locale >=1
-        - msys2-perl-io-html >=1.004
-        - msys2-perl-http-date >=6
-        - msys2-perl-lwp-mediatypes >=6
-        - msys2-perl-uri >=1.10
+        - msys2-perl >=5.8.8                       # perl>=5.8.8
+        - msys2-perl-clone >=0.50                  # perl-Clone
+        - msys2-perl-encode-locale >=1             # perl-Encode-Locale>=1
+        - msys2-perl-io-html >=1.004               # perl-IO-HTML
+        - msys2-perl-http-date >=6                 # perl-HTTP-Date>=6
+        - msys2-perl-lwp-mediatypes >=6            # perl-LWP-MediaTypes>=6
+        - msys2-perl-uri >=1.10                    # perl-URI>=1.10
       run_constrained:
         - m2-perl-http-message                     <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Config.3pm.gz          # [unix]

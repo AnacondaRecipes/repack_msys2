@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-msys2-w32api-runtime" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/msys2-w32api-runtime/PKGBUILD
+{% set pkgname = "msys2-w32api-runtime" %}
 {% set pkgver = "14.0.0.r0.g9b3dd0125" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-msys2-w32api-runtime
   version: {{ pkgver }}
 
 source:
@@ -30,11 +31,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-w32api-headers >=14.0.0.r0.g9b3dd0125
+        - msys2-w32api-headers >=14.0.0.r0.g9b3dd0125 # msys2-w32api-headers
       run_constrained:
         - m2-msys2-w32api-runtime                  <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/w32api/agtctl_i.c                  # [unix]

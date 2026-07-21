@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-gawk" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/gawk/PKGBUILD
+{% set pkgname = "gawk" %}
 {% set pkgver = "5.4.0" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-gawk
   version: {{ pkgver }}
 
 source:
@@ -32,14 +33,17 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
-        - msys2-mpfr >=4.2.2
-        - msys2-libintl >=0.22.5
-        - msys2-libreadline >=8.3.003
+        - msys2-bash >=5.3.015                     # sh
+        - msys2-mpfr >=4.2.2                       # mpfr
+        - msys2-libintl >=0.22.5                   # libintl
+        - msys2-libreadline >=8.3.003              # libreadline
       run_constrained:
         - m2-gawk                                  <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/awk.exe                                # [unix]

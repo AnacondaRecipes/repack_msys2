@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-automake1.17" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/automake1.17/PKGBUILD
+{% set pkgname = "automake1.17" %}
 {% set pkgver = "1.17" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-automake1.17
   version: {{ pkgver }}
 
 source:
@@ -30,12 +31,15 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
-        - msys2-perl >=5.42.2
+        - msys2-bash >=5.3.015                     # bash
+        - msys2-perl >=5.42.2                      # perl
       run_constrained:
         - m2-automake1.17                          <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/aclocal-1.17                           # [unix]

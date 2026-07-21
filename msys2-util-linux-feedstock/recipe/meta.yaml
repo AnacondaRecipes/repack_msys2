@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-util-linux" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/util-linux/PKGBUILD
+{% set pkgname = "util-linux" %}
 {% set pkgver = "2.40.2" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-util-linux
   version: {{ pkgver }}
 
 source:
@@ -38,15 +39,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-coreutils >=8.32
-        - msys2-libutil-linux >=2.40.2
-        - msys2-libiconv >=1.19
-        - msys2-libreadline >=8.3.003
-        - msys2-libsqlite >=3.53.3
+        - msys2-coreutils >=8.32                   # coreutils
+        - msys2-libutil-linux >=2.40.2             # libutil-linux
+        - msys2-libiconv >=1.19                    # libiconv
+        - msys2-libreadline >=8.3.003              # libreadline
+        - msys2-libsqlite >=3.53.3                 # libsqlite
       run_constrained:
         - m2-util-linux                            <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/agetty.exe                             # [unix]
@@ -63,6 +67,44 @@ outputs:
         - fallocate --help                                                       # [win]
         - fdisk --help                                                           # [win]
         - findfs --help                                                          # [win]
+        - flock --help                                                           # [win]
+        - fsck.cramfs --help                                                     # [win]
+        - fsck.minix --help                                                      # [win]
+        - getopt --help                                                          # [win]
+        - hardlink --help                                                        # [win]
+        - hexdump --help                                                         # [win]
+        - ipcmk --help                                                           # [win]
+        - isosize --help                                                         # [win]
+        - lastlog2 --help                                                        # [win]
+        - logger --help                                                          # [win]
+        - look --help                                                            # [win]
+        - mcookie --help                                                         # [win]
+        - mkfs --help                                                            # [win]
+        - mkfs.bfs --help                                                        # [win]
+        - mkfs.cramfs --help                                                     # [win]
+        - mkfs.minix --help                                                      # [win]
+        - mkswap --help                                                          # [win]
+        - more --help                                                            # [win]
+        - namei --help                                                           # [win]
+        - nologin --help                                                         # [win]
+        - pg --help                                                              # [win]
+        - rename --help                                                          # [win]
+        - renice --help                                                          # [win]
+        - rev --help                                                             # [win]
+        - script --help                                                          # [win]
+        - scriptlive --help                                                      # [win]
+        - scriptreplay --help                                                    # [win]
+        - setpgid --help                                                         # [win]
+        - setsid --help                                                          # [win]
+        - sfdisk --help                                                          # [win]
+        - swaplabel --help                                                       # [win]
+        - taskset --help                                                         # [win]
+        - ul --help                                                              # [win]
+        - uuidd --help                                                           # [win]
+        - uuidgen --help                                                         # [win]
+        - uuidparse --help                                                       # [win]
+        - whereis --help                                                         # [win]
+        - wipefs --help                                                          # [win]
     about:
       home: https://www.kernel.org/pub/linux/utils/util-linux/
       summary: "Miscellaneous system utilities for Linux (repack of MSYS2-packages util-linux for MSYS)"
@@ -78,12 +120,15 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gcc-libs >=15.3.0
-        - msys2-libintl >=0.22.5
+        - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-libintl >=0.22.5                   # libintl
       run_constrained:
         - m2-libutil-linux                         <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-blkid-1.dll                       # [unix]
@@ -101,11 +146,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libutil-linux >=2.40.2
+        - msys2-libutil-linux >=2.40.2             # libutil-linux
       run_constrained:
         - m2-libutil-linux-devel                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/blkid/blkid.h                      # [unix]

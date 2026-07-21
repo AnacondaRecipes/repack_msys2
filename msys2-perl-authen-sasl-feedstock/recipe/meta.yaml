@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-perl-authen-sasl" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/perl-authen-sasl/PKGBUILD
+{% set pkgname = "perl-authen-sasl" %}
 {% set pkgver = "2.2000" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-perl-authen-sasl
   version: {{ pkgver }}
 
 source:
@@ -30,11 +31,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-perl >=5.42.2
+        - msys2-perl >=5.42.2                      # perl
       run_constrained:
         - m2-perl-authen-sasl                      <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/Authen.SASL.3pm.gz          # [unix]

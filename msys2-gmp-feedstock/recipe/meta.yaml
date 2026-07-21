@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-gmp" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/gmp/PKGBUILD
+{% set pkgname = "gmp" %}
 {% set pkgver = "6.3.0" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-gmp
   version: {{ pkgver }}
 
 source:
@@ -35,10 +36,13 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-gmp                                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-gmp-10.dll                        # [unix]
@@ -59,11 +63,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gmp =6.3.0
+        - msys2-gmp =6.3.0                         # gmp=6.3.0
       run_constrained:
         - m2-gmp-devel                             <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/gmp.h                              # [unix]

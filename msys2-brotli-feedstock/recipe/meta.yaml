@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-brotli" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/brotli/PKGBUILD
+{% set pkgname = "brotli" %}
 {% set pkgver = "1.2.0" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-brotli
   version: {{ pkgver }}
 
 source:
@@ -38,11 +39,14 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gcc-libs >=15.3.0
+        - msys2-gcc-libs >=15.3.0                  # gcc-libs
       run_constrained:
         - m2-brotli                                <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/brotli.exe                             # [unix]
@@ -61,11 +65,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-brotli >=1.2.0
+        - msys2-brotli >=1.2.0                     # brotli
       run_constrained:
         - m2-brotli-devel                          <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/brotli/decode.h                    # [unix]
@@ -83,10 +90,13 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
         - m2-brotli-testdata                       <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/brotli/testdata/empty                # [unix]

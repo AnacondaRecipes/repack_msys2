@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-coreutils" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/coreutils/PKGBUILD
+{% set pkgname = "coreutils" %}
 {% set pkgver = "8.32" %}
 {% set pkgrel = "5" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-coreutils
   version: {{ pkgver }}
 
 source:
@@ -32,13 +33,16 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gmp >=6.3.0
-        - msys2-libiconv >=1.19
-        - msys2-libintl >=0.22.5
+        - msys2-gmp >=6.3.0                        # gmp
+        - msys2-libiconv >=1.19                    # libiconv
+        - msys2-libintl >=0.22.5                   # libintl
       run_constrained:
         - m2-coreutils                             <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - "test -f $PREFIX/Library/usr/bin/[.exe"                                # [unix]
@@ -55,6 +59,101 @@ outputs:
         - chgrp --help                                                           # [win]
         - chmod --help                                                           # [win]
         - chown --help                                                           # [win]
+        - chroot --help                                                          # [win]
+        - cksum --help                                                           # [win]
+        - comm --help                                                            # [win]
+        - cp --help                                                              # [win]
+        - csplit --help                                                          # [win]
+        - cut --help                                                             # [win]
+        - date --help                                                            # [win]
+        - dd --help                                                              # [win]
+        - df --help                                                              # [win]
+        - dir --help                                                             # [win]
+        - dircolors --help                                                       # [win]
+        - dirname --help                                                         # [win]
+        - du --help                                                              # [win]
+        - echo --help                                                            # [win]
+        - env --help                                                             # [win]
+        - expand --help                                                          # [win]
+        - expr --help                                                            # [win]
+        - factor --help                                                          # [win]
+        - false --help                                                           # [win]
+        - fmt --help                                                             # [win]
+        - fold --help                                                            # [win]
+        - gkill --help                                                           # [win]
+        - groups --help                                                          # [win]
+        - head --help                                                            # [win]
+        - hostid --help                                                          # [win]
+        - hostname --help                                                        # [win]
+        - id --help                                                              # [win]
+        - install --help                                                         # [win]
+        - join --help                                                            # [win]
+        - link --help                                                            # [win]
+        - ln --help                                                              # [win]
+        - logname --help                                                         # [win]
+        - ls --help                                                              # [win]
+        - md5sum --help                                                          # [win]
+        - mkdir --help                                                           # [win]
+        - mkfifo --help                                                          # [win]
+        - mknod --help                                                           # [win]
+        - mktemp --help                                                          # [win]
+        - mv --help                                                              # [win]
+        - nice --help                                                            # [win]
+        - nl --help                                                              # [win]
+        - nohup --help                                                           # [win]
+        - nproc --help                                                           # [win]
+        - numfmt --help                                                          # [win]
+        - od --help                                                              # [win]
+        - paste --help                                                           # [win]
+        - pathchk --help                                                         # [win]
+        - pinky --help                                                           # [win]
+        - pr --help                                                              # [win]
+        - printenv --help                                                        # [win]
+        - printf --help                                                          # [win]
+        - ptx --help                                                             # [win]
+        - pwd --help                                                             # [win]
+        - readlink --help                                                        # [win]
+        - realpath --help                                                        # [win]
+        - rm --help                                                              # [win]
+        - rmdir --help                                                           # [win]
+        - runcon --help                                                          # [win]
+        - seq --help                                                             # [win]
+        - sha1sum --help                                                         # [win]
+        - sha224sum --help                                                       # [win]
+        - sha256sum --help                                                       # [win]
+        - sha384sum --help                                                       # [win]
+        - sha512sum --help                                                       # [win]
+        - shred --help                                                           # [win]
+        - shuf --help                                                            # [win]
+        - sleep --help                                                           # [win]
+        - sort --help                                                            # [win]
+        - split --help                                                           # [win]
+        - stat --help                                                            # [win]
+        - stdbuf --help                                                          # [win]
+        - stty --help                                                            # [win]
+        - sum --help                                                             # [win]
+        - sync --help                                                            # [win]
+        - tac --help                                                             # [win]
+        - tail --help                                                            # [win]
+        - tee --help                                                             # [win]
+        - test --help                                                            # [win]
+        - timeout --help                                                         # [win]
+        - touch --help                                                           # [win]
+        - tr --help                                                              # [win]
+        - true --help                                                            # [win]
+        - truncate --help                                                        # [win]
+        - tsort --help                                                           # [win]
+        - tty --help                                                             # [win]
+        - uname --help                                                           # [win]
+        - unexpand --help                                                        # [win]
+        - uniq --help                                                            # [win]
+        - unlink --help                                                          # [win]
+        - users --help                                                           # [win]
+        - vdir --help                                                            # [win]
+        - wc --help                                                              # [win]
+        - who --help                                                             # [win]
+        - whoami --help                                                          # [win]
+        - yes --help                                                             # [win]
     about:
       home: https://www.gnu.org/software/coreutils
       summary: "The basic file, shell and text manipulation utilities of the GNU operating system (repack of MSYS2-packages coreutils for MSYS)"

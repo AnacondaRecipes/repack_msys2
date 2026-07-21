@@ -3,22 +3,23 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_mingw-w64-make" %}
+# https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-make/PKGBUILD
+{% set pkgname = "make" %}
 {% set pkgver = "4.4.1" %}
 {% set pkgrel = "5" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_mingw-w64-make
   version: {{ pkgver }}
 
 source:
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: ucrt64-make
-    sha256: 871f760657a360279f29b945a7fd7d9655fe46a3e1e06dd783c9e74514aa0b27
-  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
-    folder: clangarm64-make
-    sha256: bbb640ddba62b818b8ab182e63dd83a0771702452a3ecded9463f7a75a165be5
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
+    folder: ucrt64-make # [win and x86_64]
+    sha256: 871f760657a360279f29b945a7fd7d9655fe46a3e1e06dd783c9e74514aa0b27 # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and arm64]
+    folder: clangarm64-make # [win and arm64]
+    sha256: bbb640ddba62b818b8ab182e63dd83a0771702452a3ecded9463f7a75a165be5 # [win and arm64]
 
 build:
   number: {{ build_number }}
@@ -37,9 +38,11 @@ outputs:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-gettext-runtime
+        - ucrt64-gettext-runtime                   # mingw-w64-ucrt-x86_64-gettext-runtime
       run_constrained:
         - m2w64-make                               <0a0
     test:
@@ -64,11 +67,11 @@ outputs:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-gettext-runtime >=1.0
-      run_constrained:
-        - m2w64-make                               <0a0
+        - clangarm64-gettext-runtime >=1.0         # mingw-w64-clang-aarch64-gettext-runtime
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/mingw32-make.exe                # [unix]

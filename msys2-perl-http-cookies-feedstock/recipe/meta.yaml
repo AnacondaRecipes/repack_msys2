@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-perl-http-cookies" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/perl-http-cookies/PKGBUILD
+{% set pkgname = "perl-http-cookies" %}
 {% set pkgver = "6.11" %}
 {% set pkgrel = "1" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-perl-http-cookies
   version: {{ pkgver }}
 
 source:
@@ -30,13 +31,16 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-perl >=5.8.8
-        - msys2-perl-http-date >=6
-        - msys2-perl-http-message >=7.02
+        - msys2-perl >=5.8.8                       # perl>=5.8.8
+        - msys2-perl-http-date >=6                 # perl-HTTP-Date>=6
+        - msys2-perl-http-message >=7.02           # perl-HTTP-Message
       run_constrained:
         - m2-perl-http-cookies                     <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Cookies.3pm.gz         # [unix]

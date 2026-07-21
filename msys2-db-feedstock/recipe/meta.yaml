@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-db" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/db/PKGBUILD
+{% set pkgname = "db" %}
 {% set pkgver = "6.2.32" %}
 {% set pkgrel = "6" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-db
   version: {{ pkgver }}
 
 source:
@@ -41,27 +42,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libdb =6.2.32
+        - msys2-libdb =6.2.32                      # libdb=6.2.32
       run_constrained:
         - m2-db                                    <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/db_archive.exe                         # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\db_archive.exe EXIT /B 1         # [win]
-        - db_archive --help                                                      # [win]
-        - db_checkpoint --help                                                   # [win]
-        - db_convert --help                                                      # [win]
-        - db_deadlock --help                                                     # [win]
-        - db_dump --help                                                         # [win]
-        - db_hotbackup --help                                                    # [win]
-        - db_load --help                                                         # [win]
-        - db_log_verify --help                                                   # [win]
-        - db_printlog --help                                                     # [win]
-        - db_recover --help                                                      # [win]
-        - db_replicate --help                                                    # [win]
-        - db_stat --help                                                         # [win]
     about:
       home: https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
       summary: "The Berkeley DB embedded database system (repack of MSYS2-packages db for MSYS)"
@@ -77,11 +69,14 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gcc-libs >=15.3.0
+        - msys2-gcc-libs >=15.3.0                  # gcc-libs
       run_constrained:
         - m2-libdb                                 <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-db-6.2.dll                        # [unix]
@@ -99,11 +94,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libdb =6.2.32
+        - msys2-libdb =6.2.32                      # libdb=6.2.32
       run_constrained:
         - m2-libdb-devel                           <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/db.h                               # [unix]
@@ -121,11 +119,14 @@ outputs:
     build:
       number: {{ build_number }}
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-bash >=5.3.015
+        - msys2-bash >=5.3.015                     # sh
       run_constrained:
         - m2-db-docs                               <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/doc/db/html/api_reference/C/add_data_dir_parameter.html # [unix]

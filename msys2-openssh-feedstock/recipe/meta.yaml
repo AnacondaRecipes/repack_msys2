@@ -3,13 +3,14 @@
 #
 # Any edits will be overwritten
 #
-{% set pkgname = "repack_msys2-openssh" %}
+# https://github.com/msys2/MSYS2-packages/blob/master/openssh/PKGBUILD
+{% set pkgname = "openssh" %}
 {% set pkgver = "10.3p1" %}
 {% set pkgrel = "2" %}
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: {{ pkgname }}
+  name: repack_msys2-openssh
   version: {{ pkgver }}
 
 source:
@@ -32,31 +33,22 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
+      build:
+      host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-heimdal >=7.8.0
-        - msys2-libedit >=20240808_3.1
-        - msys2-libxcrypt >=4.5.2
-        - msys2-libfido2 >=1.17.0
-        - msys2-openssl >=3.6.3
+        - msys2-heimdal >=7.8.0                    # heimdal
+        - msys2-libedit >=20240808_3.1             # libedit
+        - msys2-libxcrypt >=4.5.2                  # libxcrypt
+        - msys2-libfido2 >=1.17.0                  # libfido2
+        - msys2-openssl >=3.6.3                    # openssl
       run_constrained:
         - m2-openssh                               <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/findssl.sh                             # [unix]
         - IF NOT EXIST %PREFIX%\Library\usr\bin\findssl.sh EXIT /B 1             # [win]
-        - scp --help                                                             # [win]
-        - sftp --help                                                            # [win]
-        - sftp-server --help                                                     # [win]
-        - ssh --help                                                             # [win]
-        - ssh-add --help                                                         # [win]
-        - ssh-agent --help                                                       # [win]
-        - ssh-keygen --help                                                      # [win]
-        - ssh-keyscan --help                                                     # [win]
-        - ssh-keysign --help                                                     # [win]
-        - ssh-pkcs11-helper --help                                               # [win]
-        - ssh-sk-helper --help                                                   # [win]
-        - sshd --help                                                            # [win]
     about:
       home: https://www.openssh.com/portable.html
       summary: "Free version of the SSH connectivity tools (repack of MSYS2-packages openssh for MSYS)"
