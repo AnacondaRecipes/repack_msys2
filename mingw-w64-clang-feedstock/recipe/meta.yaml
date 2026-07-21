@@ -56,6 +56,12 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -86,6 +92,12 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -118,6 +130,13 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/WS2_32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -142,6 +161,12 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -180,6 +205,9 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/VERSION.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -222,6 +250,8 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -273,6 +303,8 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
@@ -297,6 +329,8 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 1000
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64

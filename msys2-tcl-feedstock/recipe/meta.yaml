@@ -35,6 +35,9 @@ outputs:
     script: repack.bat  # [win]
     build:
       number: 3000
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/USER32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
