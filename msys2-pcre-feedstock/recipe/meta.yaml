@@ -46,7 +46,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -61,7 +61,7 @@ outputs:
         - msys2-libpcrecpp >=8.45
         - msys2-libpcreposix >=8.45
       run_constrained:
-        - m2-pcre                                   <0a0
+        - m2-pcre                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/pcregrep.exe                           # [unix]
@@ -71,13 +71,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages pcre for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libpcre
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -85,7 +87,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libpcre                                   <0a0
+        - m2-libpcre                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-pcre-1.dll                        # [unix]
@@ -93,13 +95,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages libpcre for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libpcre16
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -107,7 +111,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libpcre16                                   <0a0
+        - m2-libpcre16                             <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-pcre16-0.dll                      # [unix]
@@ -115,13 +119,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages libpcre16 for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libpcre32
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -129,7 +135,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libpcre32                                   <0a0
+        - m2-libpcre32                             <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-pcre32-0.dll                      # [unix]
@@ -137,13 +143,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages libpcre32 for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libpcrecpp
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -152,7 +160,7 @@ outputs:
         - msys2-libpcre >=8.45
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libpcrecpp                                   <0a0
+        - m2-libpcrecpp                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-pcrecpp-0.dll                     # [unix]
@@ -160,13 +168,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages libpcrecpp for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libpcreposix
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -174,7 +184,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-libpcre >=8.45
       run_constrained:
-        - m2-libpcreposix                                   <0a0
+        - m2-libpcreposix                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-pcreposix-0.dll                   # [unix]
@@ -182,13 +192,15 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages libpcreposix for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-pcre-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -198,7 +210,7 @@ outputs:
         - msys2-libpcreposix =8.45
         - msys2-libpcrecpp =8.45
       run_constrained:
-        - m2-pcre-devel                                   <0a0
+        - m2-pcre-devel                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/pcre-config                            # [unix]
@@ -206,5 +218,7 @@ outputs:
     about:
       home: https://www.pcre.org/
       summary: "A library that implements Perl 5-style regular expressions (repack of MSYS2-packages pcre-devel for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-time                                   <0a0
+        - m2-time                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/time.exe                               # [unix]
@@ -44,5 +44,7 @@ outputs:
     about:
       home: https://www.gnu.org/directory/time.html
       summary: "Utility for monitoring a program's use of system resources (repack of MSYS2-packages time for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

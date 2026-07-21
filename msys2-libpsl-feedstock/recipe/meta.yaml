@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -40,7 +40,7 @@ outputs:
         - msys2-libidn2 >=2.3.8
         - msys2-libunistring >=1.4.2
       run_constrained:
-        - m2-libpsl                                   <0a0
+        - m2-libpsl                                <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-psl-5.dll                         # [unix]
@@ -49,13 +49,16 @@ outputs:
     about:
       home: https://github.com/rockdaboot/libpsl
       summary: "Public Suffix List library (repack of MSYS2-packages libpsl for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-libpsl-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -63,7 +66,7 @@ outputs:
         - msys2-libidn2-devel >=2.3.8
         - msys2-libunistring >=1.4.2
       run_constrained:
-        - m2-libpsl-devel                                   <0a0
+        - m2-libpsl-devel                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/libpsl.h                           # [unix]
@@ -71,5 +74,8 @@ outputs:
     about:
       home: https://github.com/rockdaboot/libpsl
       summary: "Public Suffix List library (repack of MSYS2-packages libpsl-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

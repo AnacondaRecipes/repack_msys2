@@ -13,6 +13,9 @@ package:
   version: {{ pkgver }}
 
 source:
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libidn2-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-libidn2
+    sha256: d5f4b5e9d99ff7b2a986d1dc0c73da2bcd93ba68462be7b1debbd6ef76371f57
   - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-libidn2-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
     folder: clangarm64-libidn2
     sha256: ccca93221517c27bf0cc5d7bd08cd29be18f88192dcf7d03b11cfef2a802fc18
@@ -24,11 +27,41 @@ build:
   skip: True             # [not win]
 
 outputs:
+  - name: ucrt64-libidn2
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-gettext-runtime
+        - ucrt64-libiconv
+        - ucrt64-libunistring
+      run_constrained:
+        - m2w64-libidn2                            <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/idn2.exe                            # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\idn2.exe EXIT /B 1            # [win]
+        - idn2 --help                                                            # [win and x86_64]
+    about:
+      home: https://www.gnu.org/software/libidn/#libidn2
+      summary: "Implementation of the Stringprep, Punycode and IDNA specifications (mingw-w64) (repack of MINGW-packages libidn2 for UCRT64)"
+      license: GPL-2.0-or-later OR LGPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.unicode
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
+
   - name: clangarm64-libidn2
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 4000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -38,7 +71,7 @@ outputs:
         - clangarm64-libiconv >=1.19
         - clangarm64-libunistring >=1.4.2
       run_constrained:
-        - m2w64-libidn2                                 <0a0
+        - m2w64-libidn2                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/idn2.exe                        # [unix]
@@ -47,5 +80,10 @@ outputs:
     about:
       home: https://www.gnu.org/software/libidn/#libidn2
       summary: "Implementation of the Stringprep, Punycode and IDNA specifications (mingw-w64) (repack of MINGW-packages libidn2 for CLANGARM64)"
-      license: spdx:GPL-2.0-or-later spdx:LGPL-3.0-or-later
+      license: GPL-2.0-or-later OR LGPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.unicode
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
 

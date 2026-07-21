@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 7000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -39,7 +39,7 @@ outputs:
         - msys2-libpcre >=8.45
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-grep                                   <0a0
+        - m2-grep                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/egrep                                  # [unix]
@@ -48,5 +48,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/grep/
       summary: "A string search utility (repack of MSYS2-packages grep for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

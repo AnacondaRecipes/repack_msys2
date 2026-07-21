@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -71,20 +71,26 @@ outputs:
     about:
       home: https://gcc.gnu.org/
       summary: "The GNU Compiler Collection (repack of MSYS2-packages gcc for MSYS)"
-      license: spdx:GPL-3.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND GFDL-1.3-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1
+      license: GPL-3.0-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.RUNTIME
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3.LIB
 
   - name: msys2-gcc-libs
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-gcc-libs                                   <0a0
+        - m2-gcc-libs                              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-atomic-1.dll                      # [unix]
@@ -92,5 +98,11 @@ outputs:
     about:
       home: https://gcc.gnu.org/
       summary: "The GNU Compiler Collection (repack of MSYS2-packages gcc-libs for MSYS)"
-      license: spdx:GPL-3.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND GFDL-1.3-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1
+      license: GPL-3.0-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.RUNTIME
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3.LIB
 

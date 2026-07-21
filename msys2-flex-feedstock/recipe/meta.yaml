@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 4000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -39,7 +39,7 @@ outputs:
         - msys2-libiconv >=1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-flex                                   <0a0
+        - m2-flex                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/flex++.exe                             # [unix]
@@ -50,5 +50,7 @@ outputs:
     about:
       home: https://github.com/westes/flex
       summary: "A tool for generating text-scanning programs (repack of MSYS2-packages flex for MSYS)"
-      license: spdx:LicenseRef-flex
+      license: BSD-2-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/usr/share/doc/flex/COPYING
 

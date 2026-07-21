@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-brotli                                   <0a0
+        - m2-brotli                                <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/brotli.exe                             # [unix]
@@ -51,19 +51,21 @@ outputs:
     about:
       home: https://github.com/google/brotli
       summary: "Brotli compression library (repack of MSYS2-packages brotli for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-brotli-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-brotli >=1.2.0
       run_constrained:
-        - m2-brotli-devel                                   <0a0
+        - m2-brotli-devel                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/brotli/decode.h                    # [unix]
@@ -71,18 +73,20 @@ outputs:
     about:
       home: https://github.com/google/brotli
       summary: "Brotli compression library (repack of MSYS2-packages brotli-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-brotli-testdata
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-brotli-testdata                                   <0a0
+        - m2-brotli-testdata                       <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/brotli/testdata/empty                # [unix]
@@ -90,5 +94,7 @@ outputs:
     about:
       home: https://github.com/google/brotli
       summary: "Brotli compression library (repack of MSYS2-packages brotli-testdata for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

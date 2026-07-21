@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -46,7 +46,7 @@ outputs:
         - msys2-libreadline >=8.3.003
         - msys2-libsqlite >=3.53.3
       run_constrained:
-        - m2-util-linux                                   <0a0
+        - m2-util-linux                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/agetty.exe                             # [unix]
@@ -66,13 +66,15 @@ outputs:
     about:
       home: https://www.kernel.org/pub/linux/utils/util-linux/
       summary: "Miscellaneous system utilities for Linux (repack of MSYS2-packages util-linux for MSYS)"
-      license: spdx:GPL-2.0-or-later
+      license: GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libutil-linux
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -81,7 +83,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-libutil-linux                                   <0a0
+        - m2-libutil-linux                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-blkid-1.dll                       # [unix]
@@ -89,19 +91,21 @@ outputs:
     about:
       home: https://www.kernel.org/pub/linux/utils/util-linux/
       summary: "Miscellaneous system utilities for Linux (repack of MSYS2-packages libutil-linux for MSYS)"
-      license: spdx:GPL-2.0-or-later
+      license: GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libutil-linux-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libutil-linux >=2.40.2
       run_constrained:
-        - m2-libutil-linux-devel                                   <0a0
+        - m2-libutil-linux-devel                   <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/blkid/blkid.h                      # [unix]
@@ -109,5 +113,7 @@ outputs:
     about:
       home: https://www.kernel.org/pub/linux/utils/util-linux/
       summary: "Miscellaneous system utilities for Linux (repack of MSYS2-packages libutil-linux-devel for MSYS)"
-      license: spdx:GPL-2.0-or-later
+      license: GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

@@ -28,13 +28,13 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-perl-http-date >=6.07
       run_constrained:
-        - m2-perl-http-cookiejar                                   <0a0
+        - m2-perl-http-cookiejar                   <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.CookieJar.3pm.gz       # [unix]
@@ -42,5 +42,7 @@ outputs:
     about:
       home: http://search.cpan.org/dist/HTTP-CookieJar
       summary: "A minimalist HTTP user agent cookie jar (repack of MSYS2-packages perl-http-cookiejar for MSYS)"
-      license: spdx:Apache-2.0
+      license: Apache-2.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

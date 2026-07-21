@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -38,7 +38,7 @@ outputs:
         - msys2-libiconv >=1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-diffutils                                   <0a0
+        - m2-diffutils                             <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/cmp.exe                                # [unix]
@@ -50,5 +50,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/diffutils
       summary: "Utility programs used for creating patch files (repack of MSYS2-packages diffutils for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

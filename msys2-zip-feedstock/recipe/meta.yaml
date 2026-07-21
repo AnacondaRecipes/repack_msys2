@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -48,5 +48,7 @@ outputs:
     about:
       home: http://www.info-zip.org/Zip.html
       summary: "Creates PKZIP-compatible .zip files (repack of MSYS2-packages zip for MSYS)"
-      license: spdx:LicenseRef-Info-ZIP
+      license: Info-ZIP
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/usr/share/licenses/zip/LICENSE
 

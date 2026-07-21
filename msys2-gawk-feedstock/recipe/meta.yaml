@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -39,7 +39,7 @@ outputs:
         - msys2-libintl >=0.22.5
         - msys2-libreadline >=8.3.003
       run_constrained:
-        - m2-gawk                                   <0a0
+        - m2-gawk                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/awk.exe                                # [unix]
@@ -52,5 +52,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/gawk/
       summary: "GNU version of awk (repack of MSYS2-packages gawk for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

@@ -31,14 +31,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-jansson                                   <0a0
+        - m2-jansson                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-jansson-4.dll                     # [unix]
@@ -46,19 +46,21 @@ outputs:
     about:
       home: https://www.digip.org/jansson/
       summary: "C library for encoding, decoding and manipulating JSON data (repack of MSYS2-packages jansson for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-jansson-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-jansson =2.15.0
       run_constrained:
-        - m2-jansson-devel                                   <0a0
+        - m2-jansson-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/jansson.h                          # [unix]
@@ -66,5 +68,7 @@ outputs:
     about:
       home: https://www.digip.org/jansson/
       summary: "C library for encoding, decoding and manipulating JSON data (repack of MSYS2-packages jansson-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

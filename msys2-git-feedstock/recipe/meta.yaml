@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -69,5 +69,7 @@ outputs:
     about:
       home: https://git-scm.com/
       summary: "The fast distributed version control system (repack of MSYS2-packages git for MSYS)"
-      license: spdx:GPL-2.0-only
+      license: GPL-2.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

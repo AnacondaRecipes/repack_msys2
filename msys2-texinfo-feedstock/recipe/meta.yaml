@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -44,7 +44,7 @@ outputs:
         - msys2-perl >=5.42.2
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-texinfo                                   <0a0
+        - m2-texinfo                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/makeinfo                               # [unix]
@@ -52,13 +52,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/texinfo/
       summary: "Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file (repack of MSYS2-packages texinfo for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-info
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -69,7 +71,7 @@ outputs:
         - msys2-libintl >=0.22.5
         - msys2-ncurses >=6.6
       run_constrained:
-        - m2-info                                   <0a0
+        - m2-info                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/info.exe                               # [unix]
@@ -79,13 +81,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/texinfo/
       summary: "Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file (repack of MSYS2-packages info for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-texinfo-tex
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -93,7 +97,7 @@ outputs:
         - msys2-perl >=5.42.2
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-texinfo-tex                                   <0a0
+        - m2-texinfo-tex                           <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/pdftexi2dvi                            # [unix]
@@ -101,5 +105,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/texinfo/
       summary: "Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file (repack of MSYS2-packages texinfo-tex for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

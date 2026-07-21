@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -36,7 +36,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-which                                   <0a0
+        - m2-which                                 <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/which.exe                              # [unix]
@@ -45,5 +45,7 @@ outputs:
     about:
       home: https://savannah.gnu.org/projects/which/
       summary: "A utility to show the full path of commands (repack of MSYS2-packages which for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

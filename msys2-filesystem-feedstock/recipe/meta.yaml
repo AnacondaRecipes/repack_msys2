@@ -28,12 +28,12 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-filesystem                                   <0a0
+        - m2-filesystem                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/cmd                                    # [unix]
@@ -41,5 +41,7 @@ outputs:
     about:
       home: https://github.com/msys2/MSYS2-packages/tree/master/filesystem
       summary: "Base filesystem (repack of MSYS2-packages filesystem for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_url:
+        - https://spdx.org/licenses/BSD-3-Clause.html
 

@@ -40,7 +40,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -50,7 +50,7 @@ outputs:
         - msys2-libgettextpo >=0.22.5
         - msys2-libasprintf >=0.22.5
       run_constrained:
-        - m2-gettext                                   <0a0
+        - m2-gettext                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/autopoint                              # [unix]
@@ -70,20 +70,22 @@ outputs:
     about:
       home: https://www.gnu.org/software/gettext/
       summary: "GNU internationalization library (repack of MSYS2-packages gettext for MSYS)"
-      license: spdx:GPL-3.0-or-later AND LGPL-2.1-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-gettext-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gettext =0.22.5
         - msys2-libiconv-devel >=1.19
       run_constrained:
-        - m2-gettext-devel                                   <0a0
+        - m2-gettext-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/autosprintf.h                      # [unix]
@@ -91,13 +93,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/gettext/
       summary: "GNU internationalization library (repack of MSYS2-packages gettext-devel for MSYS)"
-      license: spdx:GPL-3.0-or-later AND LGPL-2.1-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libgettextpo
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -105,7 +109,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libgettextpo                                   <0a0
+        - m2-libgettextpo                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-gettextpo-0.dll                   # [unix]
@@ -113,13 +117,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/gettext/
       summary: "GNU internationalization library (repack of MSYS2-packages libgettextpo for MSYS)"
-      license: spdx:GPL-3.0-or-later AND LGPL-2.1-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libasprintf
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -127,7 +133,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libasprintf                                   <0a0
+        - m2-libasprintf                           <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-asprintf-0.dll                    # [unix]
@@ -135,13 +141,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/gettext/
       summary: "GNU internationalization library (repack of MSYS2-packages libasprintf for MSYS)"
-      license: spdx:GPL-3.0-or-later AND LGPL-2.1-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libintl
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -150,7 +158,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0
         - msys2-libiconv >=1.19
       run_constrained:
-        - m2-libintl                                   <0a0
+        - m2-libintl                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-intl-8.dll                        # [unix]
@@ -158,5 +166,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/gettext/
       summary: "GNU internationalization library (repack of MSYS2-packages libintl for MSYS)"
-      license: spdx:GPL-3.0-or-later AND LGPL-2.1-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

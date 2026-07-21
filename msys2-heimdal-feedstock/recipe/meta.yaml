@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-heimdal-libs >=7.8.0
       run_constrained:
-        - m2-heimdal                                   <0a0
+        - m2-heimdal                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/afslog.exe                             # [unix]
@@ -62,13 +62,15 @@ outputs:
     about:
       home: https://www.h5l.org/
       summary: "Implementation of Kerberos V5 libraries (repack of MSYS2-packages heimdal for MSYS)"
-      license: spdx:LicenseRef-Heimdal
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-heimdal-libs
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -80,7 +82,7 @@ outputs:
         - msys2-libsqlite >=3.53.3
         - msys2-libopenssl >=3.6.3
       run_constrained:
-        - m2-heimdal-libs                                   <0a0
+        - m2-heimdal-libs                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-asn1-8.dll                        # [unix]
@@ -88,13 +90,15 @@ outputs:
     about:
       home: https://www.h5l.org/
       summary: "Implementation of Kerberos V5 libraries (repack of MSYS2-packages heimdal-libs for MSYS)"
-      license: spdx:LicenseRef-Heimdal
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-heimdal-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -104,7 +108,7 @@ outputs:
         - msys2-libdb-devel >=6.2.32
         - msys2-libsqlite-devel >=3.53.3
       run_constrained:
-        - m2-heimdal-devel                                   <0a0
+        - m2-heimdal-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/krb5-config                            # [unix]
@@ -112,5 +116,7 @@ outputs:
     about:
       home: https://www.h5l.org/
       summary: "Implementation of Kerberos V5 libraries (repack of MSYS2-packages heimdal-devel for MSYS)"
-      license: spdx:LicenseRef-Heimdal
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

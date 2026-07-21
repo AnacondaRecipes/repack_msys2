@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -43,7 +43,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0
         - msys2-libzstd >=1.5.7
       run_constrained:
-        - m2-zstd                                   <0a0
+        - m2-zstd                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/unzstd.exe                             # [unix]
@@ -55,13 +55,16 @@ outputs:
     about:
       home: https://facebook.github.io/zstd/
       summary: "Zstandard - Fast real-time compression algorithm (repack of MSYS2-packages zstd for MSYS)"
-      license: spdx:BSD-3-Clause OR GPL-2.0-only
+      license: BSD-3-Clause AND GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-libzstd
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -69,7 +72,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libzstd                                   <0a0
+        - m2-libzstd                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-zstd-1.dll                        # [unix]
@@ -77,19 +80,22 @@ outputs:
     about:
       home: https://facebook.github.io/zstd/
       summary: "Zstandard - Fast real-time compression algorithm (repack of MSYS2-packages libzstd for MSYS)"
-      license: spdx:BSD-3-Clause OR GPL-2.0-only
+      license: BSD-3-Clause AND GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-libzstd-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libzstd =1.5.7
       run_constrained:
-        - m2-libzstd-devel                                   <0a0
+        - m2-libzstd-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/zdict.h                            # [unix]
@@ -97,5 +103,8 @@ outputs:
     about:
       home: https://facebook.github.io/zstd/
       summary: "Zstandard - Fast real-time compression algorithm (repack of MSYS2-packages libzstd-devel for MSYS)"
-      license: spdx:BSD-3-Clause OR GPL-2.0-only
+      license: BSD-3-Clause AND GPL-2.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

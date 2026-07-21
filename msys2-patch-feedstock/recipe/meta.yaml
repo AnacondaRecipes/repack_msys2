@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-patch                                   <0a0
+        - m2-patch                                 <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/patch.exe                              # [unix]
@@ -44,5 +44,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/patch/patch.html
       summary: "A utility to apply patch files to original sources (repack of MSYS2-packages patch for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

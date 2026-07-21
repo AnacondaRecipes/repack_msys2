@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -37,7 +37,7 @@ outputs:
         - msys2-perl-http-message >=7.02
         - msys2-perl-lwp-mediatypes >=6.04
       run_constrained:
-        - m2-perl-HTTP-Daemon                                   <0a0
+        - m2-perl-http-daemon                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Daemon.3pm.gz          # [unix]
@@ -45,5 +45,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/HTTP-Daemon
       summary: "A simple http server class (repack of MSYS2-packages perl-HTTP-Daemon for MSYS)"
-      license: spdx:Artistic-1.0-Perl spdx:GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENCE
 

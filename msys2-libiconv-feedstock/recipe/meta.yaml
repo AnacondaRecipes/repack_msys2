@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libiconv                                   <0a0
+        - m2-libiconv                              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-charset-1.dll                     # [unix]
@@ -50,13 +50,16 @@ outputs:
     about:
       home: https://www.gnu.org/software/libiconv/
       summary: "Libiconv is a conversion library (repack of MSYS2-packages libiconv for MSYS)"
-      license: spdx:GPL-3.0-only AND LGPL-2.1-only
+      license: GPL-3.0 AND LGPL-2.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
 
   - name: msys2-iconv
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -66,7 +69,7 @@ outputs:
         - msys2-libiconv =1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-iconv                                   <0a0
+        - m2-iconv                                 <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/iconv.exe                              # [unix]
@@ -75,20 +78,23 @@ outputs:
     about:
       home: https://www.gnu.org/software/libiconv/
       summary: "Libiconv is a conversion library (repack of MSYS2-packages iconv for MSYS)"
-      license: spdx:GPL-3.0-only AND LGPL-2.1-only
+      license: GPL-3.0 AND LGPL-2.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
 
   - name: msys2-libiconv-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-iconv =1.19
         - msys2-libiconv =1.19
       run_constrained:
-        - m2-libiconv-devel                                   <0a0
+        - m2-libiconv-devel                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/iconv.h                            # [unix]
@@ -96,5 +102,8 @@ outputs:
     about:
       home: https://www.gnu.org/software/libiconv/
       summary: "Libiconv is a conversion library (repack of MSYS2-packages libiconv-devel for MSYS)"
-      license: spdx:GPL-3.0-only AND LGPL-2.1-only
+      license: GPL-3.0 AND LGPL-2.1
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
 

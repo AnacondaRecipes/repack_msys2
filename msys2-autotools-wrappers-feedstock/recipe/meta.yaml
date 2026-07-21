@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -46,7 +46,7 @@ outputs:
         - msys2-automake1.17 >=1.17
         - msys2-automake1.18 >=1.18.1
       run_constrained:
-        - m2-automake-wrapper                                   <0a0
+        - m2-automake-wrapper                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/aclocal                                # [unix]
@@ -54,13 +54,15 @@ outputs:
     about:
       home: https://gitweb.gentoo.org/proj/autotools-wrappers.git/
       summary: "(repack of MSYS2-packages automake-wrapper for MSYS)"
-      license: spdx:GPL-2.0-only
+      license: GPL-2.0-only
+      license_url:
+        - https://spdx.org/licenses/GPL-2.0-only.html
 
   - name: msys2-autoconf-wrapper
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -72,7 +74,7 @@ outputs:
         - msys2-autoconf2.69 >=2.69
         - msys2-autoconf2.13 >=2.13
       run_constrained:
-        - m2-autoconf-wrapper                                   <0a0
+        - m2-autoconf-wrapper                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/autoconf                               # [unix]
@@ -80,5 +82,7 @@ outputs:
     about:
       home: https://gitweb.gentoo.org/proj/autotools-wrappers.git/
       summary: "(repack of MSYS2-packages autoconf-wrapper for MSYS)"
-      license: spdx:GPL-2.0-only
+      license: GPL-2.0-only
+      license_url:
+        - https://spdx.org/licenses/GPL-2.0-only.html
 

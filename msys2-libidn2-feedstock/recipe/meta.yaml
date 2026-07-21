@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -40,7 +40,7 @@ outputs:
         - msys2-libunistring >=1.4.2
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-libidn2                                   <0a0
+        - m2-libidn2                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-idn2-0.dll                        # [unix]
@@ -48,13 +48,18 @@ outputs:
     about:
       home: https://www.gnu.org/software/libidn/#libidn2
       summary: "Implementation of the Stringprep, Punycode and IDNA specifications (repack of MSYS2-packages libidn2 for MSYS)"
-      license: spdx:GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later
+      license: GPL-2.0-or-later OR LGPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.unicode
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
 
   - name: msys2-libidn2-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -62,7 +67,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-libidn2 =2.3.8
       run_constrained:
-        - m2-libidn2-devel                                   <0a0
+        - m2-libidn2-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/idn2.exe                               # [unix]
@@ -71,5 +76,10 @@ outputs:
     about:
       home: https://www.gnu.org/software/libidn/#libidn2
       summary: "Implementation of the Stringprep, Punycode and IDNA specifications (repack of MSYS2-packages libidn2-devel for MSYS)"
-      license: spdx:GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later
+      license: GPL-2.0-or-later OR LGPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.unicode
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
 

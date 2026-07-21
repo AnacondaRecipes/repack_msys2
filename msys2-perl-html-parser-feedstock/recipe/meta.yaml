@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -39,7 +39,7 @@ outputs:
         - msys2-perl-uri >=5.35
         - msys2-perl >=5.42.2
       run_constrained:
-        - m2-perl-HTML-Parser                                   <0a0
+        - m2-perl-html-parser                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/lib/perl5/vendor_perl/auto/HTML/Parser/Parser.dll # [unix]
@@ -47,5 +47,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/HTML-Parser
       summary: "Perl HTML parser class (repack of MSYS2-packages perl-HTML-Parser for MSYS)"
-      license: spdx:Artistic-1.0-Perl spdx:GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

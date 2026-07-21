@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -39,11 +39,13 @@ outputs:
         - msys2-make >=4.4.1
         - msys2-pkgconf >=2.5.1
       run_constrained:
-        - m2-autotools                                   <0a0
+        - m2-autotools                             <0a0
     test:
       commands:
     about:
       home: https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html
       summary: "A meta package for the GNU autotools build system (repack of MSYS2-packages autotools for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: GPL-1.0-or-later
+      license_url:
+        - https://spdx.org/licenses/GPL-1.0-or-later.html
 

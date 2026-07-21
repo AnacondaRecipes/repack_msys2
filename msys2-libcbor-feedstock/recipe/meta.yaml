@@ -31,14 +31,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-libcbor                                   <0a0
+        - m2-libcbor                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-cbor-0.14.dll                     # [unix]
@@ -46,19 +46,21 @@ outputs:
     about:
       home: https://github.com/PJK/libcbor
       summary: "A C library for parsing and generating CBOR, a general-purpose schema-less binary data format (repack of MSYS2-packages libcbor for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE.md
 
   - name: msys2-libcbor-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libcbor =0.14.0
       run_constrained:
-        - m2-libcbor-devel                                   <0a0
+        - m2-libcbor-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/cbor/arrays.h                      # [unix]
@@ -66,5 +68,7 @@ outputs:
     about:
       home: https://github.com/PJK/libcbor
       summary: "A C library for parsing and generating CBOR, a general-purpose schema-less binary data format (repack of MSYS2-packages libcbor-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE.md
 

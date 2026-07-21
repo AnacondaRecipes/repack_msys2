@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -37,7 +37,7 @@ outputs:
         - msys2-libintl >=0.22.5
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-make                                   <0a0
+        - m2-make                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/make.exe                               # [unix]
@@ -46,5 +46,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/make
       summary: "GNU make utility to maintain groups of programs (repack of MSYS2-packages make for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

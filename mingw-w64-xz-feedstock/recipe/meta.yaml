@@ -13,6 +13,9 @@ package:
   version: {{ pkgver }}
 
 source:
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-xz
+    sha256: 840af0192f4b67be09238e783249c78cc1672981e7d0acc5c67a6bd0b4bca0cb
   - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-xz-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
     folder: clangarm64-xz
     sha256: ca31204e434ad924d5ee76744dfae5a82a8ca6e76f7947d512715ee42d1dff80
@@ -24,11 +27,44 @@ build:
   skip: True             # [not win]
 
 outputs:
+  - name: ucrt64-xz
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-gettext-runtime
+      run_constrained:
+        - m2w64-xz                                 <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/liblzma-5.dll                       # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\liblzma-5.dll EXIT /B 1       # [win]
+        - lzmadec --help                                                         # [win and x86_64]
+        - lzmainfo --help                                                        # [win and x86_64]
+        - unxz --help                                                            # [win and x86_64]
+        - xz --help                                                              # [win and x86_64]
+        - xzcat --help                                                           # [win and x86_64]
+        - xzdec --help                                                           # [win and x86_64]
+    about:
+      home: https://tukaani.org/xz
+      summary: "Library and command line tools for XZ and LZMA compressed files (mingw-w64) (repack of MINGW-packages xz for UCRT64)"
+      license: LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LGPLv2.1
+
   - name: clangarm64-xz
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -50,5 +86,10 @@ outputs:
     about:
       home: https://tukaani.org/xz
       summary: "Library and command line tools for XZ and LZMA compressed files (mingw-w64) (repack of MINGW-packages xz for CLANGARM64)"
-      license: spdx:0BSD AND LGPL-2.1-or-later AND GPL-2.0-or-later
+      license: LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LGPLv2.1
 

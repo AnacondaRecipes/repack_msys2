@@ -31,14 +31,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-bash >=5.3.015
         - msys2-libltdl =2.5.4
       run_constrained:
-        - m2-libtool                                   <0a0
+        - m2-libtool                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/libtool                                # [unix]
@@ -46,20 +46,23 @@ outputs:
     about:
       home: https://www.gnu.org/software/libtool
       summary: "A generic library support script (repack of MSYS2-packages libtool for MSYS)"
-      license: spdx:LGPL-2.0-or-later WITH Libtool-exception
+      license: GPL-2.0-or-later AND GPL-2.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/libltdl/COPYING.LIB
 
   - name: msys2-libltdl
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-libltdl                                   <0a0
+        - m2-libltdl                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-ltdl-7.dll                        # [unix]
@@ -67,5 +70,8 @@ outputs:
     about:
       home: https://www.gnu.org/software/libtool
       summary: "A generic library support script (repack of MSYS2-packages libltdl for MSYS)"
-      license: spdx:LGPL-2.0-or-later WITH Libtool-exception
+      license: GPL-2.0-or-later AND GPL-2.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/libltdl/COPYING.LIB
 

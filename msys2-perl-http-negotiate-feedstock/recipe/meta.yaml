@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-perl >=5.8.8
         - msys2-perl-http-message >=7.02
       run_constrained:
-        - m2-perl-HTTP-Negotiate                                   <0a0
+        - m2-perl-http-negotiate                   <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Negotiate.3pm.gz       # [unix]
@@ -43,5 +43,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/HTTP-Negotiate
       summary: "choose a variant to serve (repack of MSYS2-packages perl-HTTP-Negotiate for MSYS)"
-      license: spdx:Artistic-1.0-Perl OR GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_url:
+        - https://dev.perl.org/licenses/
 

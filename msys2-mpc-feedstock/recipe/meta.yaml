@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -48,13 +48,15 @@ outputs:
     about:
       home: https://www.multiprecision.org/
       summary: "Multiple precision complex arithmetic library (repack of MSYS2-packages mpc for MSYS)"
-      license: spdx:LGPL-3.0-or-later
+      license: LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSER
 
   - name: msys2-mpc-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -62,7 +64,7 @@ outputs:
         - msys2-gmp-devel >=6.3.0
         - msys2-mpfr-devel >=4.2.2
       run_constrained:
-        - m2-mpc-devel                                   <0a0
+        - m2-mpc-devel                             <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/mpc.h                              # [unix]
@@ -70,5 +72,7 @@ outputs:
     about:
       home: https://www.multiprecision.org/
       summary: "Multiple precision complex arithmetic library (repack of MSYS2-packages mpc-devel for MSYS)"
-      license: spdx:LGPL-3.0-or-later
+      license: LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSER
 

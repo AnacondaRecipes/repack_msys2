@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 4000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -41,7 +41,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-openssl >=3.6.3
       run_constrained:
-        - m2-libevent                                   <0a0
+        - m2-libevent                              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/event_rpcgen.py                        # [unix]
@@ -49,20 +49,22 @@ outputs:
     about:
       home: https://libevent.org/
       summary: "An event notification library (repack of MSYS2-packages libevent for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 
   - name: msys2-libevent-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 4000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libevent =2.1.12
         - msys2-openssl-devel >=3.6.3
       run_constrained:
-        - m2-libevent-devel                                   <0a0
+        - m2-libevent-devel                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/evdns.h                            # [unix]
@@ -70,5 +72,7 @@ outputs:
     about:
       home: https://libevent.org/
       summary: "An event notification library (repack of MSYS2-packages libevent-devel for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

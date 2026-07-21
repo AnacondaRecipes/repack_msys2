@@ -34,14 +34,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-expat                                   <0a0
+        - m2-expat                                 <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/xmlwf.exe                              # [unix]
@@ -50,13 +50,15 @@ outputs:
     about:
       home: https://libexpat.github.io/
       summary: "An XML parser library (repack of MSYS2-packages expat for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libexpat
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -64,7 +66,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0
       run_constrained:
-        - m2-libexpat                                   <0a0
+        - m2-libexpat                              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-expat-1.dll                       # [unix]
@@ -72,19 +74,21 @@ outputs:
     about:
       home: https://libexpat.github.io/
       summary: "An XML parser library (repack of MSYS2-packages libexpat for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libexpat-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libexpat =2.8.2
       run_constrained:
-        - m2-libexpat-devel                                   <0a0
+        - m2-libexpat-devel                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/expat.h                            # [unix]
@@ -92,5 +96,7 @@ outputs:
     about:
       home: https://libexpat.github.io/
       summary: "An XML parser library (repack of MSYS2-packages libexpat-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

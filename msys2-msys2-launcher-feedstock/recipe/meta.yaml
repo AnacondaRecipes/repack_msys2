@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
@@ -38,12 +38,14 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-mintty >=2.2.1
       run_constrained:
-        - m2-msys2-launcher                                   <0a0
+        - m2-msys2-launcher                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clang64.exe                                    # [unix]
         - IF NOT EXIST %PREFIX%\Library\clang64.exe EXIT /B 1                    # [win]
     about:
       summary: "Helper for launching MSYS2 shells (repack of MSYS2-packages msys2-launcher for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_url:
+        - https://github.com/msys2/msys2-launcher/blob/master/LICENSE.md
 

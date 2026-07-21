@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -38,7 +38,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0
         - msys2-libiconv >=1.19
       run_constrained:
-        - m2-m4                                   <0a0
+        - m2-m4                                    <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/m4.exe                                 # [unix]
@@ -47,5 +47,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/m4
       summary: "The GNU macro processor (repack of MSYS2-packages m4 for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/usr/share/licenses/m4/COPYING
 

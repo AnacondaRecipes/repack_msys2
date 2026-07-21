@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -46,5 +46,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/sed
       summary: "GNU stream editor (repack of MSYS2-packages sed for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

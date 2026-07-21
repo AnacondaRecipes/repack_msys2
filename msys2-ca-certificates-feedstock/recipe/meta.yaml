@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -39,7 +39,7 @@ outputs:
         - msys2-sed >=4.9
         - msys2-p11-kit >=0.26.2
       run_constrained:
-        - m2-ca-certificates                                   <0a0
+        - m2-ca-certificates                       <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/update-ca-trust                        # [unix]
@@ -47,5 +47,7 @@ outputs:
     about:
       home: https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/
       summary: "Common CA certificates (repack of MSYS2-packages ca-certificates for MSYS)"
-      license: spdx:MPL-2.0 AND GPL-2.0-or-later
+      license: MPL-2.0 AND GPL-2.0-or-later
+      license_url:
+        - https://ftp.debian.org/debian/pool/main/c/ca-certificates/
 

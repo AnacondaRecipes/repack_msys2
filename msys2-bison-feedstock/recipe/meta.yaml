@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -39,7 +39,7 @@ outputs:
         - msys2-libiconv >=1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-bison                                   <0a0
+        - m2-bison                                 <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/bison.exe                              # [unix]
@@ -48,5 +48,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/bison/bison.html
       summary: "The GNU general-purpose parser generator (repack of MSYS2-packages bison for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/usr/share/doc/bison/COPYING
 

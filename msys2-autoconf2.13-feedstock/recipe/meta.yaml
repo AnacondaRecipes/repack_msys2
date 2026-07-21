@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 6000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -38,7 +38,7 @@ outputs:
         - msys2-bash >=5.3.015
         - msys2-perl >=5.42.2
       run_constrained:
-        - m2-autoconf2.13                                   <0a0
+        - m2-autoconf2.13                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/autoconf-2.13                          # [unix]
@@ -46,5 +46,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/autoconf
       summary: "A GNU tool for automatically configuring source code (repack of MSYS2-packages autoconf2.13 for MSYS)"
-      license: spdx:GPL-2.0-or-later AND GPL-3.0-or-later WITH Autoconf-exception-3.0
+      license: GNU General Public License v3 or later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

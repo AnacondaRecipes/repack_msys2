@@ -28,12 +28,12 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-windows-default-manifest                                   <0a0
+        - m2-windows-default-manifest              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/lib/default-manifest.o                     # [unix]
@@ -41,5 +41,7 @@ outputs:
     about:
       home: https://cygwin.com/
       summary: "Default Windows application manifest (repack of MSYS2-packages windows-default-manifest for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: Other
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

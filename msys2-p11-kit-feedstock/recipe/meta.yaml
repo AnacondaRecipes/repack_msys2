@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-libp11-kit >=0.26.2
       run_constrained:
-        - m2-p11-kit                                   <0a0
+        - m2-p11-kit                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/p11-kit.exe                            # [unix]
@@ -54,13 +54,15 @@ outputs:
     about:
       home: https://p11-glue.freedesktop.org/p11-kit.html
       summary: "Library to work with PKCS#11 modules (repack of MSYS2-packages p11-kit for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libp11-kit
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -70,7 +72,7 @@ outputs:
         - msys2-libintl >=0.22.5
         - msys2-libtasn1 >=4.21.0
       run_constrained:
-        - m2-libp11-kit                                   <0a0
+        - m2-libp11-kit                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-p11-kit-0.dll                     # [unix]
@@ -78,19 +80,21 @@ outputs:
     about:
       home: https://p11-glue.freedesktop.org/p11-kit.html
       summary: "Library to work with PKCS#11 modules (repack of MSYS2-packages libp11-kit for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libp11-kit-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libp11-kit >=0.26.2
       run_constrained:
-        - m2-libp11-kit-devel                                   <0a0
+        - m2-libp11-kit-devel                      <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/p11-kit-1/p11-kit/deprecated.h     # [unix]
@@ -98,5 +102,7 @@ outputs:
     about:
       home: https://p11-glue.freedesktop.org/p11-kit.html
       summary: "Library to work with PKCS#11 modules (repack of MSYS2-packages libp11-kit-devel for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

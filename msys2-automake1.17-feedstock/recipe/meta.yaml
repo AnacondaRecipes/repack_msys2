@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-bash >=5.3.015
         - msys2-perl >=5.42.2
       run_constrained:
-        - m2-automake1.17                                   <0a0
+        - m2-automake1.17                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/aclocal-1.17                           # [unix]
@@ -43,5 +43,5 @@ outputs:
     about:
       home: https://www.gnu.org/software/automake
       summary: "A GNU tool for automatically creating Makefiles (repack of MSYS2-packages automake1.17 for MSYS)"
-      license: spdx:GPL-2.0-or-later
+      license: GNU General Public License v2 or later
 

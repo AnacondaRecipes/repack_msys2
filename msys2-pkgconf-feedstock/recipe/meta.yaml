@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-pkgconf                                   <0a0
+        - m2-pkgconf                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/bomtool.exe                            # [unix]
@@ -47,5 +47,7 @@ outputs:
     about:
       home: https://github.com/pkgconf/pkgconf
       summary: "pkg-config compatible utility which does not depend on glib (repack of MSYS2-packages pkgconf for MSYS)"
-      license: spdx:ISC
+      license: ISC
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

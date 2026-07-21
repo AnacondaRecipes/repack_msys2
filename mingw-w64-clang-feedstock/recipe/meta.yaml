@@ -13,6 +13,33 @@ package:
   version: {{ pkgver }}
 
 source:
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-llvm-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-llvm
+    sha256: e928c32a39b1f69c573775e05dd6b34411d484ded2f105db5bd64867bfb26201
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-llvm-tools-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-llvm-tools
+    sha256: 53e0ef2c29eefedbecd81b43737e2514b57de798dbda085eb155c5a09a593a81
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-llvm-libs-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-llvm-libs
+    sha256: 08fbdd7993fcd5de13a121befbed6b051587459a7178ccdd41c9b66421a6be26
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-clang-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-clang
+    sha256: a1c67165abb6671bdb90582840ca4cef306b02cd8b48225d0dae3f19519bb128
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-clang-libs-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-clang-libs
+    sha256: 02ccb48d92a57cfb5432045c16d9eeac721aab6e52dd3a33d6699933cb6724c7
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-clang-analyzer-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-clang-analyzer
+    sha256: ccf0313c6b4b5f6fe2f6cada3a41213c44871fb2eaf0681ea4abf220de3650f6
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-clang-tools-extra-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-clang-tools-extra
+    sha256: ca0cb688b718ce1c95a91976957201bafab348cf823b06b7fc0332335452cf3e
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-compiler-rt-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-compiler-rt
+    sha256: 897cad0b99e99c547f3650d2590d07365b7511bc6d6365eb8033255acf62b58c
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-lld-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-lld
+    sha256: eb747cd7777f757c3217ed6c43b985ece5814ca6edf557f54a16dc29412e3a8d
   - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-llvm-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
     folder: clangarm64-llvm
     sha256: d01627c20d218ec39453c3667338b4c02617c5936ccd0f98bb5de1956c28ec4e
@@ -51,11 +78,285 @@ build:
   skip: True             # [not win]
 
 outputs:
+  - name: ucrt64-llvm
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-llvm-libs =22.1.8
+        - ucrt64-llvm-tools =22.1.8
+      run_constrained:
+        - m2w64-llvm                               <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/count.exe                           # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\count.exe EXIT /B 1           # [win]
+        - FileCheck --help                                                       # [win and x86_64]
+        - UnicodeNameMappingGenerator --help                                     # [win and x86_64]
+        - count --help                                                           # [win and x86_64]
+        - llvm-PerfectShuffle --help                                             # [win and x86_64]
+        - llvm-tblgen --help                                                     # [win and x86_64]
+        - llvm-test-mustache-spec --help                                         # [win and x86_64]
+        - not --help                                                             # [win and x86_64]
+        - split-file --help                                                      # [win and x86_64]
+        - yaml-bench --help                                                      # [win and x86_64]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-llvm-tools
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-llvm-libs =22.1.8
+      run_constrained:
+        - m2w64-llvm-tools                         <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/bugpoint.exe                        # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\bugpoint.exe EXIT /B 1        # [win]
+        - bugpoint --help                                                        # [win and x86_64]
+        - clang-offload-packager --help                                          # [win and x86_64]
+        - dsymutil --help                                                        # [win and x86_64]
+        - llc --help                                                             # [win and x86_64]
+        - lli --help                                                             # [win and x86_64]
+        - lli-child-target --help                                                # [win and x86_64]
+        - llvm-addr2line --help                                                  # [win and x86_64]
+        - llvm-ar --help                                                         # [win and x86_64]
+        - llvm-as --help                                                         # [win and x86_64]
+        - llvm-bcanalyzer --help                                                 # [win and x86_64]
+        - llvm-bitcode-strip --help                                              # [win and x86_64]
+        - llvm-c-test --help                                                     # [win and x86_64]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-tools for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-llvm-libs
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/WS2_32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+        - ucrt64-libffi
+        - ucrt64-libxml2
+        - ucrt64-zlib
+        - ucrt64-zstd
+      run_constrained:
+        - m2w64-llvm-libs                          <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/libLLVM-22.dll                      # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\libLLVM-22.dll EXIT /B 1      # [win]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-libs for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-clang
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/SHELL32.dll                                  # [win]
+        - $RPATH/ntdll.dll                                  # [win]
+        - $RPATH/ole32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-clang-libs =22.1.8
+        - ucrt64-llvm-libs =22.1.8
+        - ucrt64-gcc
+      run_constrained:
+        - m2w64-clang                              <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/amdgpu-arch.exe                     # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\amdgpu-arch.exe EXIT /B 1     # [win]
+        - amdgpu-arch --help                                                     # [win and x86_64]
+        - clang --help                                                           # [win and x86_64]
+        - clang++ --help                                                         # [win and x86_64]
+        - clang-check --help                                                     # [win and x86_64]
+        - clang-cl --help                                                        # [win and x86_64]
+        - clang-cpp --help                                                       # [win and x86_64]
+        - clang-extdef-mapping --help                                            # [win and x86_64]
+        - clang-format --help                                                    # [win and x86_64]
+        - clang-installapi --help                                                # [win and x86_64]
+        - clang-linker-wrapper --help                                            # [win and x86_64]
+        - clang-nvlink-wrapper --help                                            # [win and x86_64]
+        - clang-offload-bundler --help                                           # [win and x86_64]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-clang-libs
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/VERSION.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+        - ucrt64-llvm-libs =22.1.8
+      run_constrained:
+        - m2w64-clang-libs                         <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/libclang-cpp.dll                    # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\libclang-cpp.dll EXIT /B 1    # [win]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-libs for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-clang-analyzer
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-clang =22.1.8
+        - ucrt64-python
+      run_constrained:
+        - m2w64-clang-analyzer                     <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/analyze-build                       # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\analyze-build EXIT /B 1       # [win]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-analyzer for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-clang-tools-extra
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-clang =22.1.8
+      run_constrained:
+        - m2w64-clang-tools-extra                  <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/clang-apply-replacements.exe        # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\clang-apply-replacements.exe EXIT /B 1 # [win]
+        - clang-apply-replacements --help                                        # [win and x86_64]
+        - clang-change-namespace --help                                          # [win and x86_64]
+        - clang-doc --help                                                       # [win and x86_64]
+        - clang-include-cleaner --help                                           # [win and x86_64]
+        - clang-include-fixer --help                                             # [win and x86_64]
+        - clang-move --help                                                      # [win and x86_64]
+        - clang-query --help                                                     # [win and x86_64]
+        - clang-reorder-fields --help                                            # [win and x86_64]
+        - clang-tidy --help                                                      # [win and x86_64]
+        - clangd --help                                                          # [win and x86_64]
+        - find-all-symbols --help                                                # [win and x86_64]
+        - modularize --help                                                      # [win and x86_64]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-tools-extra for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-compiler-rt
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+      run_constrained:
+        - m2w64-compiler-rt                        <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/lib/clang/22/include/orc/c_api.h        # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\lib\clang\22\include\orc\c_api.h EXIT /B 1 # [win]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages compiler-rt for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
+  - name: ucrt64-lld
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+        - ucrt64-llvm-libs =22.1.8
+        - ucrt64-zlib
+        - ucrt64-zstd
+      run_constrained:
+        - m2w64-lld                                <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/ld.lld.exe                          # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\ld.lld.exe EXIT /B 1          # [win]
+        - ld.lld --help                                                          # [win and x86_64]
+        - ld64.lld --help                                                        # [win and x86_64]
+        - lld --help                                                             # [win and x86_64]
+        - lld-link --help                                                        # [win and x86_64]
+        - wasm-ld --help                                                         # [win and x86_64]
+    about:
+      home: https://llvm.org/
+      summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages lld for UCRT64)"
+      license: spdx:Apache-2.0 WITH LLVM-exception
+
   - name: clangarm64-llvm
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -68,7 +369,7 @@ outputs:
         - clangarm64-llvm-libs =22.1.8
         - clangarm64-llvm-tools =22.1.8
       run_constrained:
-        - m2w64-llvm                                 <0a0
+        - m2w64-llvm                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/count.exe                       # [unix]
@@ -91,7 +392,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -103,7 +404,7 @@ outputs:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-llvm-libs =22.1.8
       run_constrained:
-        - m2w64-llvm-tools                                 <0a0
+        - m2w64-llvm-tools                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/addr2line.exe                   # [unix]
@@ -129,7 +430,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -146,7 +447,7 @@ outputs:
         - clangarm64-zlib >=1.3.2
         - clangarm64-zstd >=1.5.7
       run_constrained:
-        - m2w64-llvm-libs                                 <0a0
+        - m2w64-llvm-libs                          <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libLLVM-22.dll                  # [unix]
@@ -160,7 +461,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -178,7 +479,7 @@ outputs:
         - clangarm64-lld =22.1.8
         - clangarm64-winpthreads >=14.0.0.r147.g31bd54ab7
       run_constrained:
-        - m2w64-clang                                 <0a0
+        - m2w64-clang                              <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/aarch64-w64-mingw32-c++.exe     # [unix]
@@ -204,7 +505,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/VERSION.dll                                  # [win]
@@ -214,7 +515,7 @@ outputs:
         - clangarm64-cc-libs
         - clangarm64-llvm-libs =22.1.8
       run_constrained:
-        - m2w64-clang-libs                                 <0a0
+        - m2w64-clang-libs                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libclang-cpp.dll                # [unix]
@@ -228,14 +529,14 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-clang =22.1.8
         - clangarm64-python >=3.14.6
       run_constrained:
-        - m2w64-clang-analyzer                                 <0a0
+        - m2w64-clang-analyzer                     <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/analyze-build                   # [unix]
@@ -249,7 +550,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -257,7 +558,7 @@ outputs:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-clang =22.1.8
       run_constrained:
-        - m2w64-clang-tools-extra                                 <0a0
+        - m2w64-clang-tools-extra                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/clang-apply-replacements.exe    # [unix]
@@ -283,12 +584,12 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-mingw-w64-mutex * clangarm64
       run_constrained:
-        - m2w64-compiler-rt                                 <0a0
+        - m2w64-compiler-rt                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/lib/clang/22/include/orc/c_api.h    # [unix]
@@ -302,7 +603,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -310,7 +611,7 @@ outputs:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-clang =22.1.8
       run_constrained:
-        - m2w64-gcc-compat                                 <0a0
+        - m2w64-gcc-compat                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/aarch64-w64-mingw32-g++.exe     # [unix]
@@ -328,7 +629,7 @@ outputs:
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -339,7 +640,7 @@ outputs:
         - clangarm64-zlib >=1.3.2
         - clangarm64-zstd >=1.5.7
       run_constrained:
-        - m2w64-lld                                 <0a0
+        - m2w64-lld                                <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/ld.exe                          # [unix]

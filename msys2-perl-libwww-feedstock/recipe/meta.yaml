@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -48,7 +48,7 @@ outputs:
         - msys2-perl-http-message >=7.02
         - msys2-perl-try-tiny >=0.32
       run_constrained:
-        - m2-perl-libwww                                   <0a0
+        - m2-perl-libwww                           <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/vendor_perl/lwp-download               # [unix]
@@ -56,5 +56,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/libwww-perl
       summary: "The World-Wide Web library for Perl (repack of MSYS2-packages perl-libwww for MSYS)"
-      license: spdx:Artistic-1.0-Perl spdx:GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

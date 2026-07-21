@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -49,7 +49,7 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-msys2-runtime                                   <0a0
+        - m2-msys2-runtime                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/chattr.exe                             # [unix]
@@ -69,19 +69,24 @@ outputs:
     about:
       home: https://www.cygwin.com/
       summary: "Cygwin POSIX emulation engine (repack of MSYS2-packages msys2-runtime for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL2.0 AND LPGL-2.1 AND GPL-3.0 AND LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3.LIB
 
   - name: msys2-msys2-runtime-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-runtime =3.6.9
       run_constrained:
-        - m2-msys2-runtime-devel                                   <0a0
+        - m2-msys2-runtime-devel                   <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-2.0.dbg                           # [unix]
@@ -89,5 +94,10 @@ outputs:
     about:
       home: https://www.cygwin.com/
       summary: "Cygwin POSIX emulation engine (repack of MSYS2-packages msys2-runtime-devel for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL2.0 AND LPGL-2.1 AND GPL-3.0 AND LGPL-3.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LIB
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING3.LIB
 

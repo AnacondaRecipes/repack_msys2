@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-libgdbm =1.26
       run_constrained:
-        - m2-gdbm                                   <0a0
+        - m2-gdbm                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/gdbm_dump.exe                          # [unix]
@@ -53,13 +53,15 @@ outputs:
     about:
       home: https://www.gnu.org/software/gdbm/gdbm.html
       summary: "GNU database library (repack of MSYS2-packages gdbm for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libgdbm
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -71,7 +73,7 @@ outputs:
         - msys2-libintl >=0.22.5
         - msys2-ncurses >=6.6
       run_constrained:
-        - m2-libgdbm                                   <0a0
+        - m2-libgdbm                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-gdbm-6.dll                        # [unix]
@@ -79,20 +81,22 @@ outputs:
     about:
       home: https://www.gnu.org/software/gdbm/gdbm.html
       summary: "GNU database library (repack of MSYS2-packages libgdbm for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libgdbm-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libgdbm =1.26
         - msys2-libreadline-devel >=8.3.003
       run_constrained:
-        - m2-libgdbm-devel                                   <0a0
+        - m2-libgdbm-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/gdbm/dbm.h                         # [unix]
@@ -100,5 +104,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/gdbm/gdbm.html
       summary: "GNU database library (repack of MSYS2-packages libgdbm-devel for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

@@ -28,14 +28,14 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-perl >=5.42.2
         - msys2-perl-uri >=5.35
       run_constrained:
-        - m2-perl-WWW-RobotRules                                   <0a0
+        - m2-perl-www-robotrules                   <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/WWW.RobotRules.3pm.gz       # [unix]
@@ -43,5 +43,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/WWW-RobotRules
       summary: "Database of robots.txt-derived permissions (repack of MSYS2-packages perl-WWW-RobotRules for MSYS)"
-      license: spdx:Artistic-1.0-Perl spdx:GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_url:
+        - https://dev.perl.org/licenses/
 

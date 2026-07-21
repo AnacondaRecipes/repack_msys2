@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -50,7 +50,7 @@ outputs:
         - msys2-openssl >=3.6.3
         - msys2-zlib >=1.3.2
       run_constrained:
-        - m2-curl                                   <0a0
+        - m2-curl                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/curl.exe                               # [unix]
@@ -59,13 +59,15 @@ outputs:
     about:
       home: https://curl.se/
       summary: "Multi-protocol file transfer utility (repack of MSYS2-packages curl for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libcurl
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -84,7 +86,7 @@ outputs:
         - msys2-zlib >=1.3.2
         - msys2-libzstd >=1.5.7
       run_constrained:
-        - m2-libcurl                                   <0a0
+        - m2-libcurl                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-curl-4.dll                        # [unix]
@@ -92,13 +94,15 @@ outputs:
     about:
       home: https://curl.se/
       summary: "Multi-protocol file transfer utility (repack of MSYS2-packages libcurl for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libcurl-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -114,7 +118,7 @@ outputs:
         - msys2-openssl-devel >=3.6.3
         - msys2-zlib-devel >=1.3.2
       run_constrained:
-        - m2-libcurl-devel                                   <0a0
+        - m2-libcurl-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/curl-config                            # [unix]
@@ -122,5 +126,7 @@ outputs:
     about:
       home: https://curl.se/
       summary: "Multi-protocol file transfer utility (repack of MSYS2-packages libcurl-devel for MSYS)"
-      license: spdx:MIT
+      license: MIT
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

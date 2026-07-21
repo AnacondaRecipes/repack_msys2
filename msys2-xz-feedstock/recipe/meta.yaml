@@ -34,7 +34,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -44,7 +44,7 @@ outputs:
         - msys2-libiconv >=1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-xz                                   <0a0
+        - m2-xz                                    <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/lzcat.exe                              # [unix]
@@ -61,20 +61,25 @@ outputs:
     about:
       home: https://tukaani.org/xz/
       summary: "Library and command line tools for XZ and LZMA compressed files (repack of MSYS2-packages xz for MSYS)"
-      license: spdx:GPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-xz-Public-Domain
+      license: LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LGPLv2.1
 
   - name: msys2-liblzma
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-liblzma                                   <0a0
+        - m2-liblzma                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-lzma-5.dll                        # [unix]
@@ -82,13 +87,18 @@ outputs:
     about:
       home: https://tukaani.org/xz/
       summary: "Library and command line tools for XZ and LZMA compressed files (repack of MSYS2-packages liblzma for MSYS)"
-      license: spdx:GPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-xz-Public-Domain
+      license: LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LGPLv2.1
 
   - name: msys2-liblzma-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -96,7 +106,7 @@ outputs:
         - msys2-libiconv-devel >=1.19
         - msys2-gettext-devel >=0.22.5
       run_constrained:
-        - m2-liblzma-devel                                   <0a0
+        - m2-liblzma-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/lzma/base.h                        # [unix]
@@ -104,5 +114,10 @@ outputs:
     about:
       home: https://tukaani.org/xz/
       summary: "Library and command line tools for XZ and LZMA compressed files (repack of MSYS2-packages liblzma-devel for MSYS)"
-      license: spdx:GPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-xz-Public-Domain
+      license: LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.GPLv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LGPLv2.1
 

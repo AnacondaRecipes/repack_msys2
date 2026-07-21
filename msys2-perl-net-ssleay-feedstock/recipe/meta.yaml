@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -36,7 +36,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-openssl >=3.6.3
       run_constrained:
-        - m2-perl-Net-SSLeay                                   <0a0
+        - m2-perl-net-ssleay                       <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/lib/perl5/vendor_perl/auto/Net/SSLeay/autosplit.ix # [unix]
@@ -44,5 +44,7 @@ outputs:
     about:
       home: https://metacpan.org/dist/Net-SSLeay/
       summary: "Perl extension for using OpenSSL (repack of MSYS2-packages perl-Net-SSLeay for MSYS)"
-      license: spdx:Artistic-2.0
+      license: Artistic-2.0
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

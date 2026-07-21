@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -40,7 +40,7 @@ outputs:
         - msys2-ncurses >=6.6
         - msys2-bash >=5.3.015
       run_constrained:
-        - m2-libedit                                   <0a0
+        - m2-libedit                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-edit-0.dll                        # [unix]
@@ -48,20 +48,22 @@ outputs:
     about:
       home: https://www.thrysoee.dk/editline/
       summary: "Libedit is an autotool- and libtoolized port of the NetBSD Editline library. (repack of MSYS2-packages libedit for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libedit-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libedit =20240808_3.1
         - msys2-ncurses-devel >=6.6
       run_constrained:
-        - m2-libedit-devel                                   <0a0
+        - m2-libedit-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/editline/readline.h                # [unix]
@@ -69,5 +71,7 @@ outputs:
     about:
       home: https://www.thrysoee.dk/editline/
       summary: "Libedit is an autotool- and libtoolized port of the NetBSD Editline library. (repack of MSYS2-packages libedit-devel for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

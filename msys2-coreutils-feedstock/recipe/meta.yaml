@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -38,7 +38,7 @@ outputs:
         - msys2-libiconv >=1.19
         - msys2-libintl >=0.22.5
       run_constrained:
-        - m2-coreutils                                   <0a0
+        - m2-coreutils                             <0a0
     test:
       commands:
         - "test -f $PREFIX/Library/usr/bin/[.exe"                                # [unix]
@@ -58,5 +58,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/coreutils
       summary: "The basic file, shell and text manipulation utilities of the GNU operating system (repack of MSYS2-packages coreutils for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

@@ -13,6 +13,12 @@ package:
   version: {{ pkgver }}
 
 source:
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-openblas-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-openblas
+    sha256: b2eefd31ce2d2fd1a252f5aae63508384a7f403fce0319887eefe75db045ff70
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-openblas64-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-openblas64
+    sha256: 60410fd004f7b9b6bac53a086a639a2b83f9093658ce6da324892fad409c5b09
   - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-openblas-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
     folder: clangarm64-openblas
     sha256: e1b505994f1b3d79a33cc56115e63c89c7d2c196498a09942886d99af4a31350
@@ -27,11 +33,69 @@ build:
   skip: True             # [not win]
 
 outputs:
+  - name: ucrt64-openblas
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+        - ucrt64-gcc-libgfortran
+        - ucrt64-omp
+      run_constrained:
+        - m2w64-openblas                           <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/libopenblas.dll                     # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\libopenblas.dll EXIT /B 1     # [win]
+    about:
+      home: https://www.openblas.net/
+      summary: "An optimized BLAS library based on GotoBLAS2 1.13 BSD version. (mingw-w64) (repack of MINGW-packages openblas for UCRT64)"
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE-lapack
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE-lapack
+
+  - name: ucrt64-openblas64
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/KERNEL32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-cc-libs
+        - ucrt64-gcc-libgfortran
+        - ucrt64-omp
+      run_constrained:
+        - m2w64-openblas64                         <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/libopenblas_64.dll                  # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\libopenblas_64.dll EXIT /B 1  # [win]
+    about:
+      home: https://www.openblas.net/
+      summary: "An optimized BLAS library based on GotoBLAS2 1.13 BSD version. (mingw-w64) (repack of MINGW-packages openblas64 for UCRT64)"
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE-lapack
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE-lapack
+
   - name: clangarm64-openblas
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -40,7 +104,7 @@ outputs:
         - clangarm64-cc-libs
         - clangarm64-omp
       run_constrained:
-        - m2w64-openblas                                 <0a0
+        - m2w64-openblas                           <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libopenblas.dll                 # [unix]
@@ -48,13 +112,18 @@ outputs:
     about:
       home: https://www.openblas.net/
       summary: "An optimized BLAS library based on GotoBLAS2 1.13 BSD version. (mingw-w64) (repack of MINGW-packages openblas for CLANGARM64)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE-lapack
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE-lapack
 
   - name: clangarm64-openblas64
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 3000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -63,7 +132,7 @@ outputs:
         - clangarm64-cc-libs
         - clangarm64-omp
       run_constrained:
-        - m2w64-openblas64                                 <0a0
+        - m2w64-openblas64                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libopenblas_64.dll              # [unix]
@@ -71,5 +140,10 @@ outputs:
     about:
       home: https://www.openblas.net/
       summary: "An optimized BLAS library based on GotoBLAS2 1.13 BSD version. (mingw-w64) (repack of MINGW-packages openblas64 for CLANGARM64)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS/LICENSE-lapack
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE
+        - {{ RECIPE_DIR }}/src_licenses/ucrt64/share/licenses/OpenBLAS64/LICENSE-lapack
 

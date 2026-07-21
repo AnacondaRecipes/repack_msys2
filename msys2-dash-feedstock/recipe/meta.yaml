@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -38,7 +38,7 @@ outputs:
         - msys2-sed >=4.9
         - msys2-filesystem >=2026.03.06
       run_constrained:
-        - m2-dash                                   <0a0
+        - m2-dash                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/ash.exe                                # [unix]
@@ -48,5 +48,7 @@ outputs:
     about:
       home: http://gondor.apana.org.au/~herbert/dash/
       summary: "A POSIX compliant shell that aims to be as small as possible (repack of MSYS2-packages dash for MSYS)"
-      license: spdx:BSD-3-Clause AND GPL-2.0-or-later
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/usr/share/licenses/dash/COPYING
 

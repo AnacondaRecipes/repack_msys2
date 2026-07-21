@@ -28,13 +28,13 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-perl >=5.8.8
       run_constrained:
-        - m2-perl-HTTP-Date                                   <0a0
+        - m2-perl-http-date                        <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/share/man/man3/HTTP.Date.3pm.gz            # [unix]
@@ -42,5 +42,7 @@ outputs:
     about:
       home: https://metacpan.org/release/HTTP-Date
       summary: "Date conversion routines (repack of MSYS2-packages perl-HTTP-Date for MSYS)"
-      license: spdx:Artistic-1.0-Perl OR GPL-1.0-or-later
+      license: GPL-1.0-or-later OR Artistic-1.0-Perl
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

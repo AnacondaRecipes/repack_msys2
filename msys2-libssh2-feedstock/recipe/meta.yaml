@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -41,7 +41,7 @@ outputs:
         - msys2-openssl >=3.6.3
         - msys2-zlib >=1.3.2
       run_constrained:
-        - m2-libssh2                                   <0a0
+        - m2-libssh2                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/msys-ssh2-1.dll                        # [unix]
@@ -49,13 +49,15 @@ outputs:
     about:
       home: https://libssh2.org/
       summary: "A library implementing the SSH2 protocol as defined by Internet Drafts (repack of MSYS2-packages libssh2 for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-libssh2-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
@@ -63,7 +65,7 @@ outputs:
         - msys2-openssl-devel >=3.6.3
         - msys2-zlib-devel >=1.3.2
       run_constrained:
-        - m2-libssh2-devel                                   <0a0
+        - m2-libssh2-devel                         <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/libssh2.h                          # [unix]
@@ -71,5 +73,7 @@ outputs:
     about:
       home: https://libssh2.org/
       summary: "A library implementing the SSH2 protocol as defined by Internet Drafts (repack of MSYS2-packages libssh2-devel for MSYS)"
-      license: spdx:BSD-3-Clause
+      license: BSD-3-Clause
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

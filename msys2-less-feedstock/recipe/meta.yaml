@@ -28,7 +28,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -37,7 +37,7 @@ outputs:
         - msys2-ncurses >=6.6
         - msys2-libpcre2_8 >=10.47
       run_constrained:
-        - m2-less                                   <0a0
+        - m2-less                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/less.exe                               # [unix]
@@ -48,5 +48,8 @@ outputs:
     about:
       home: http://www.greenwoodsoftware.com/less
       summary: "A terminal based program for viewing text files (repack of MSYS2-packages less for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: BSD-2-Clause AND GPL-3.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/LICENSE
 

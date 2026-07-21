@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
     requirements:
@@ -46,19 +46,24 @@ outputs:
     about:
       home: https://gmplib.org/
       summary: "A free library for arbitrary precision arithmetic (repack of MSYS2-packages gmp for MSYS)"
-      license: spdx:LGPL-3.0-or-later OR GPL-2.0-or-later
+      license: LGPL-3.0-only AND GPL-3.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv3
 
   - name: msys2-gmp-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 2000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gmp =6.3.0
       run_constrained:
-        - m2-gmp-devel                                   <0a0
+        - m2-gmp-devel                             <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/gmp.h                              # [unix]
@@ -66,5 +71,10 @@ outputs:
     about:
       home: https://gmplib.org/
       summary: "A free library for arbitrary precision arithmetic (repack of MSYS2-packages gmp-devel for MSYS)"
-      license: spdx:LGPL-3.0-or-later OR GPL-2.0-or-later
+      license: LGPL-3.0-only AND GPL-3.0-only
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+        - {{ RECIPE_DIR }}/src_licenses/COPYING.LESSERv3
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv2
+        - {{ RECIPE_DIR }}/src_licenses/COPYINGv3
 

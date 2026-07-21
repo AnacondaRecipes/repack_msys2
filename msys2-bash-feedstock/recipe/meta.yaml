@@ -31,7 +31,7 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                  # [win]
         - $RPATH/USER32.dll                                  # [win]
@@ -40,7 +40,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-filesystem >=2026.03.06
       run_constrained:
-        - m2-bash                                   <0a0
+        - m2-bash                                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/bin/bash.exe                               # [unix]
@@ -50,18 +50,20 @@ outputs:
     about:
       home: https://www.gnu.org/software/bash/bash.html
       summary: "The GNU Bourne Again shell (repack of MSYS2-packages bash for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
   - name: msys2-bash-devel
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-bash-devel                                   <0a0
+        - m2-bash-devel                            <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/bash/alias.h                       # [unix]
@@ -69,5 +71,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/bash/bash.html
       summary: "The GNU Bourne Again shell (repack of MSYS2-packages bash-devel for MSYS)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 

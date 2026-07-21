@@ -28,12 +28,12 @@ outputs:
     skip: True          # [not (win)]
     script: repack.bat  # [win]
     build:
-      number: 1000
+      number: {{ build_number }}
     requirements:
       run:
         - msys2-msys-mutex * msys2
       run_constrained:
-        - m2-msys2-w32api-headers                                   <0a0
+        - m2-msys2-w32api-headers                  <0a0
     test:
       commands:
         - test -f $PREFIX/Library/usr/include/w32api/_bsd_types.h                # [unix]
@@ -41,5 +41,7 @@ outputs:
     about:
       home: https://mingw-w64.sourceforge.io/
       summary: "Win32 API headers for MSYS2 32bit toolchain (repack of MSYS2-packages msys2-w32api-headers for MSYS)"
-      license: spdx:ZPL-2.1 AND LGPL-2.1-or-later
+      license: ZPL-2.1 AND BSD-2-Clause AND LGPL-2.1
+      license_url:
+        - https://sourceforge.net/p/mingw-w64/mingw-w64/ci/master/tree/COPYING
 

@@ -13,6 +13,9 @@ package:
   version: {{ pkgver }}
 
 source:
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-make
+    sha256: 871f760657a360279f29b945a7fd7d9655fe46a3e1e06dd783c9e74514aa0b27
   - url: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-make-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
     folder: clangarm64-make
     sha256: bbb640ddba62b818b8ab182e63dd83a0771702452a3ecded9463f7a75a165be5
@@ -24,11 +27,38 @@ build:
   skip: True             # [not win]
 
 outputs:
+  - name: ucrt64-make
+    skip: True          # [not (win and x86_64)]
+    script: repack.bat  # [win]
+    build:
+      number: {{ build_number }}
+      missing_dso_whitelist:
+        - $RPATH/ADVAPI32.dll                                  # [win]
+        - $RPATH/KERNEL32.dll                                  # [win]
+        - $RPATH/USER32.dll                                  # [win]
+    requirements:
+      run:
+        - msys2-mingw-w64-mutex * ucrt64
+        - ucrt64-gettext-runtime
+      run_constrained:
+        - m2w64-make                               <0a0
+    test:
+      commands:
+        - test -f $PREFIX/Library/ucrt64/bin/mingw32-make.exe                    # [unix]
+        - IF NOT EXIST %PREFIX%\Library\ucrt64\bin\mingw32-make.exe EXIT /B 1    # [win]
+        - mingw32-make --help                                                    # [win and x86_64]
+    about:
+      home: https://www.gnu.org/software/make
+      summary: "GNU make utility to maintain groups of programs (mingw-w64) (repack of MINGW-packages make for UCRT64)"
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
+
   - name: clangarm64-make
     skip: True          # [not (win and arm64)]
     script: repack.bat  # [win]
     build:
-      number: 5000
+      number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/ADVAPI32.dll                                  # [win]
         - $RPATH/KERNEL32.dll                                  # [win]
@@ -38,7 +68,7 @@ outputs:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-gettext-runtime >=1.0
       run_constrained:
-        - m2w64-make                                 <0a0
+        - m2w64-make                               <0a0
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/mingw32-make.exe                # [unix]
@@ -47,5 +77,7 @@ outputs:
     about:
       home: https://www.gnu.org/software/make
       summary: "GNU make utility to maintain groups of programs (mingw-w64) (repack of MINGW-packages make for CLANGARM64)"
-      license: spdx:GPL-3.0-or-later
+      license: GPL-3.0-or-later
+      license_file:
+        - {{ RECIPE_DIR }}/src_licenses/COPYING
 
