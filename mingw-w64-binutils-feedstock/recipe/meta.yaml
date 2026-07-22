@@ -14,9 +14,9 @@ package:
   version: {{ pkgver }}
 
 source:
-  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-binutils-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst # [win and x86_64]
-    folder: ucrt64-binutils # [win and x86_64]
-    sha256: 6161463418e0024ddde10f34ba1c590e64936b155187e78b62672fdce0b568db # [win and x86_64]
+  - url: https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-binutils-{{ pkgver }}-{{ pkgrel }}-any.pkg.tar.zst
+    folder: ucrt64-binutils
+    sha256: 6161463418e0024ddde10f34ba1c590e64936b155187e78b62672fdce0b568db
 
 build:
   number: {{ build_number }}

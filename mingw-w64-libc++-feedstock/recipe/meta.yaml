@@ -10,7 +10,7 @@
 {% set build_number = pkgrel|int * 1000 + 0 %}
 
 package:
-  name: repack_mingw-w64-libc++
+  name: repack_mingw-w64-libcxx
   version: {{ pkgver }}
 
 source:
