@@ -32,6 +32,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -40,6 +41,7 @@ outputs:
         - msys2-coreutils >=8.32                   # coreutils
         - msys2-gawk >=5.4.0                       # gawk
         - msys2-sed >=4.9                          # sed
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-tzcode                                <0a0
         - m2-msys2-runtime                         <0a0

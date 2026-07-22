@@ -30,3 +30,9 @@ del /f /q %src%\.INSTALL
 
 robocopy /E /NFL /NDL /NP /NJH /NJS %src% %dst%
 if %ERRORLEVEL% GEQ 8 exit 1
+@set "SCRIPTS_DIR=%PREFIX%\Scripts"
+if not exist %SCRIPTS_DIR% mkdir %SCRIPTS_DIR%
+if errorlevel 1 exit /b %ERRORLEVEL%
+
+copy "%RECIPE_DIR%\post-link.bat" "%SCRIPTS_DIR%\.msys2-ca-certificates-post-link.bat"
+if errorlevel 1 exit /b %ERRORLEVEL%

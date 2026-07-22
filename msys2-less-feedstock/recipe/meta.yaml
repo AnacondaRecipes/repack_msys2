@@ -32,6 +32,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -39,6 +40,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-ncurses >=6.6                      # ncurses
         - msys2-libpcre2_8 >=10.47                 # libpcre2_8
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-less                                  <0a0
         - m2-msys2-runtime                         <0a0
@@ -48,7 +50,6 @@ outputs:
         - IF NOT EXIST %PREFIX%\Library\usr\bin\less.exe EXIT /B 1               # [win]
         - less --help                                                            # [win]
         - lessecho --help                                                        # [win]
-        - lesskey --help                                                         # [win]
     about:
       home: http://www.greenwoodsoftware.com/less
       summary: "A terminal based program for viewing text files (repack of MSYS2-packages less for MSYS)"

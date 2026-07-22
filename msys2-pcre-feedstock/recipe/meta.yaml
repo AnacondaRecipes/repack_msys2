@@ -50,6 +50,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -63,6 +64,7 @@ outputs:
         - msys2-libpcre32 >=8.45                   # libpcre32
         - msys2-libpcrecpp >=8.45                  # libpcrecpp
         - msys2-libpcreposix >=8.45                # libpcreposix
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-pcre                                  <0a0
         - m2-msys2-runtime                         <0a0
@@ -86,12 +88,14 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcre                               <0a0
         - m2-msys2-runtime                         <0a0
@@ -113,12 +117,14 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcre16                             <0a0
         - m2-msys2-runtime                         <0a0
@@ -140,12 +146,14 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcre32                             <0a0
         - m2-msys2-runtime                         <0a0
@@ -167,6 +175,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -174,6 +183,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-libpcre >=8.45                     # libpcre
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcrecpp                            <0a0
         - m2-msys2-runtime                         <0a0
@@ -195,12 +205,14 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-libpcre >=8.45                     # libpcre
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcreposix                          <0a0
         - m2-msys2-runtime                         <0a0

@@ -41,6 +41,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-conio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
     requirements:
       build:
       host:
@@ -76,6 +87,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-conio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
     requirements:
       build:
       host:
@@ -111,6 +133,18 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-conio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -143,6 +177,18 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-conio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:

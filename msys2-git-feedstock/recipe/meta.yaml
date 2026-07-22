@@ -32,6 +32,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -51,6 +52,7 @@ outputs:
         - msys2-perl-mime-tools >=5.517            # perl-MIME-tools
         - msys2-perl-net-smtp-ssl >=1.04           # perl-Net-SMTP-SSL
         - msys2-perl-termreadkey >=2.38            # perl-TermReadKey
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-git                                   <0a0
         - m2-msys2-runtime                         <0a0

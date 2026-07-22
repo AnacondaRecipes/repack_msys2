@@ -45,6 +45,7 @@ outputs:
         - $RPATH/USERENV.dll                                 # [win]
         - $RPATH/VERSION.dll                                 # [win]
         - $RPATH/WINHTTP.dll                                 # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
       build:
@@ -56,6 +57,7 @@ outputs:
         - msys2-libxcrypt >=4.5.2                  # libxcrypt
         - msys2-coreutils >=8.32                   # coreutils
         - msys2-bash >=5.3.015                     # sh
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-perl                                  <0a0
         - m2-msys2-runtime                         <0a0

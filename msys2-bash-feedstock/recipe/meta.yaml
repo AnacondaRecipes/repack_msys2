@@ -36,12 +36,14 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/USER32.dll                                  # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-filesystem >=2026.03.06
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-bash                                  <0a0
         - m2-msys2-runtime                         <0a0

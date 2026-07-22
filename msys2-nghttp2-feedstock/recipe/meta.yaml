@@ -38,6 +38,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -46,6 +47,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
         - msys2-jansson >=2.15.0                   # jansson
         - msys2-libnghttp2 =1.69.0                 # libnghttp2=1.69.0
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-nghttp2                               <0a0
         - m2-msys2-runtime                         <0a0
@@ -67,12 +69,14 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libnghttp2                            <0a0
         - m2-msys2-runtime                         <0a0

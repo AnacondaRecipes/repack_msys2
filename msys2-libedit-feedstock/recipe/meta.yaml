@@ -35,6 +35,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -42,6 +43,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-ncurses >=6.6                      # ncurses
         - msys2-bash >=5.3.015                     # sh
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libedit                               <0a0
         - m2-msys2-runtime                         <0a0

@@ -88,6 +88,17 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -115,7 +126,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-llvm-tools
     skip: True          # [not (win and x86_64)]
@@ -126,6 +137,18 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -231,7 +254,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-tools for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-llvm-libs
     skip: True          # [not (win and x86_64)]
@@ -243,6 +266,18 @@ outputs:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
         - $RPATH/WS2_32.dll                                  # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -264,7 +299,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-libs for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-clang
     skip: True          # [not (win and x86_64)]
@@ -275,6 +310,17 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -314,7 +360,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-clang-libs
     skip: True          # [not (win and x86_64)]
@@ -324,6 +370,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/VERSION.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -340,7 +398,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-libs for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-clang-analyzer
     skip: True          # [not (win and x86_64)]
@@ -363,7 +421,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-analyzer for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-clang-tools-extra
     skip: True          # [not (win and x86_64)]
@@ -372,6 +430,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -400,7 +469,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-tools-extra for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-compiler-rt
     skip: True          # [not (win and x86_64)]
@@ -422,7 +491,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages compiler-rt for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: ucrt64-lld
     skip: True          # [not (win and x86_64)]
@@ -431,6 +500,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -454,7 +534,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages lld for UCRT64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-llvm
     skip: True          # [not (win and arm64)]
@@ -465,6 +545,17 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -490,7 +581,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-llvm-tools
     skip: True          # [not (win and arm64)]
@@ -501,6 +592,18 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -622,7 +725,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-tools for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-llvm-libs
     skip: True          # [not (win and arm64)]
@@ -634,6 +737,18 @@ outputs:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
         - $RPATH/WS2_32.dll                                  # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -653,7 +768,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages llvm-libs for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-clang
     skip: True          # [not (win and arm64)]
@@ -664,6 +779,17 @@ outputs:
         - $RPATH/ADVAPI32.dll                                # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/SHELL32.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/ntdll.dll                                   # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
@@ -712,7 +838,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-clang-libs
     skip: True          # [not (win and arm64)]
@@ -722,6 +848,18 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/VERSION.dll                                 # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-filesystem-l1-1-0.dll        # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -736,7 +874,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-libs for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-clang-analyzer
     skip: True          # [not (win and arm64)]
@@ -757,7 +895,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-analyzer for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-clang-tools-extra
     skip: True          # [not (win and arm64)]
@@ -766,6 +904,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -792,7 +941,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages clang-tools-extra for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-compiler-rt
     skip: True          # [not (win and arm64)]
@@ -811,7 +960,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages compiler-rt for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-gcc-compat
     skip: True          # [not (win and arm64)]
@@ -820,6 +969,15 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -837,7 +995,7 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages gcc-compat for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 
   - name: clangarm64-lld
     skip: True          # [not (win and arm64)]
@@ -846,6 +1004,17 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/api-ms-win-crt-convert-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-environment-l1-1-0.dll       # [win]
+        - $RPATH/api-ms-win-crt-heap-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-locale-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-math-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-private-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-runtime-l1-1-0.dll           # [win]
+        - $RPATH/api-ms-win-crt-stdio-l1-1-0.dll             # [win]
+        - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
+        - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
+        - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
     requirements:
       build:
       host:
@@ -868,5 +1037,5 @@ outputs:
     about:
       home: https://llvm.org/
       summary: "C language family frontend for LLVM (mingw-w64) (repack of MINGW-packages lld for CLANGARM64)"
-      license: spdx:Apache-2.0 WITH LLVM-exception
+      license: Apache-2.0 WITH LLVM-exception
 

@@ -35,6 +35,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -43,6 +44,7 @@ outputs:
         - msys2-ca-certificates >=20250419         # ca-certificates
         - msys2-openssl >=3.6.3                    # openssl
         - msys2-zlib >=1.3.2                       # zlib
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libssh2                               <0a0
         - m2-msys2-runtime                         <0a0

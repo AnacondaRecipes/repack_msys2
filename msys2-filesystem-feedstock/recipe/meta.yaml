@@ -17,6 +17,9 @@ source:
   - url: https://repo.msys2.org/msys/x86_64/filesystem-{{ pkgver }}-{{ pkgrel }}-x86_64.pkg.tar.zst
     folder: msys2-filesystem
     sha256: 4506b2dbb496281b7645ee2b2d3700f6a2fab3d74a800733f3b3b44eeb8edc5c
+    patches:
+    - 0100-fstab-tmp-and-bin.patch
+    - 0001-Remove-etc-post-install-07-pacman-key-post.patch
 
 build:
   number: {{ build_number }}

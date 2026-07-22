@@ -38,6 +38,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -48,6 +49,7 @@ outputs:
         - msys2-libiconv >=1.19                    # libiconv
         - msys2-libreadline >=8.3.003              # libreadline
         - msys2-libsqlite >=3.53.3                 # libsqlite
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-util-linux                            <0a0
         - m2-msys2-runtime                         <0a0
@@ -86,9 +88,7 @@ outputs:
         - mkswap --help                                                          # [win]
         - more --help                                                            # [win]
         - namei --help                                                           # [win]
-        - nologin --help                                                         # [win]
         - pg --help                                                              # [win]
-        - rename --help                                                          # [win]
         - renice --help                                                          # [win]
         - rev --help                                                             # [win]
         - script --help                                                          # [win]
@@ -119,6 +119,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -126,6 +127,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
         - msys2-libintl >=0.22.5                   # libintl
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libutil-linux                         <0a0
         - m2-msys2-runtime                         <0a0

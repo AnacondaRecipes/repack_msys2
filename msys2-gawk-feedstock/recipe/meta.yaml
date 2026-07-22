@@ -32,6 +32,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -41,6 +42,7 @@ outputs:
         - msys2-mpfr >=4.2.2                       # mpfr
         - msys2-libintl >=0.22.5                   # libintl
         - msys2-libreadline >=8.3.003              # libreadline
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-gawk                                  <0a0
         - m2-msys2-runtime                         <0a0

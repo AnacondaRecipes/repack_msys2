@@ -32,6 +32,7 @@ outputs:
       number: {{ build_number }}
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:
       host:
@@ -42,6 +43,7 @@ outputs:
         - msys2-libbz2 >=1.0.8                     # libbz2
         - msys2-liblzma >=5.8.3                    # liblzma
         - msys2-libzstd >=1.5.7                    # libzstd
+        - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-file                                  <0a0
         - m2-msys2-runtime                         <0a0
