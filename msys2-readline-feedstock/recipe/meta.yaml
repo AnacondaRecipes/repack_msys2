@@ -37,6 +37,7 @@ outputs:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/USER32.dll                                  # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-ncursesw6.dll                          # [win]
     requirements:
       build:
       host:

@@ -86,6 +86,8 @@ outputs:
         - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
+        - $RPATH/libbz2-1.dll                                # [win]
+        - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:
       host:
@@ -93,6 +95,7 @@ outputs:
         - msys2-mingw-w64-mutex * ucrt64
         - ucrt64-zlib                              # mingw-w64-ucrt-x86_64-zlib
         - ucrt64-bzip2                             # mingw-w64-ucrt-x86_64-bzip2
+        - ucrt64-mingw-w64-ucrt-x86_64-zlib        # DSO zlib1.dll
       run_constrained:
         - m2w64-minizip                            <0a0
     test:
@@ -158,6 +161,8 @@ outputs:
         - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
+        - $RPATH/libbz2-1.dll                                # [win]
+        - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:
       host:
@@ -165,6 +170,7 @@ outputs:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-zlib >=1.3.2                  # mingw-w64-clang-aarch64-zlib
         - clangarm64-bzip2 >=1.0.8                 # mingw-w64-clang-aarch64-bzip2
+        - clangarm64-mingw-w64-clang-aarch64-zlib  # DSO zlib1.dll
     test:
       commands:
         - test -f $PREFIX/Library/clangarm64/bin/libminizip-1.dll                # [unix]

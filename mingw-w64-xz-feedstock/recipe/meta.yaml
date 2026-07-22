@@ -47,6 +47,7 @@ outputs:
         - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
+        - $RPATH/libintl-8.dll                               # [win]
     requirements:
       build:
       host:
@@ -94,6 +95,7 @@ outputs:
         - $RPATH/api-ms-win-crt-string-l1-1-0.dll            # [win]
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
+        - $RPATH/libintl-8.dll                               # [win]
     requirements:
       build:
       host:

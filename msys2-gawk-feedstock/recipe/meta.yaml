@@ -33,6 +33,10 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-gmp-10.dll                             # [win]
+        - $RPATH/msys-intl-8.dll                             # [win]
+        - $RPATH/msys-mpfr-6.dll                             # [win]
+        - $RPATH/msys-readline8.dll                          # [win]
     requirements:
       build:
       host:
@@ -43,6 +47,7 @@ outputs:
         - msys2-libintl >=0.22.5                   # libintl
         - msys2-libreadline >=8.3.003              # libreadline
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-gmp >=6.3.0                        # DSO msys-gmp-10.dll
       run_constrained:
         - m2-gawk                                  <0a0
         - m2-msys2-runtime                         <0a0

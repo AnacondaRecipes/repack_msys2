@@ -33,6 +33,10 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-gmp-10.dll                             # [win]
+        - $RPATH/msys-iconv-2.dll                            # [win]
+        - $RPATH/msys-intl-8.dll                             # [win]
     requirements:
       build:
       host:
@@ -42,6 +46,7 @@ outputs:
         - msys2-libiconv >=1.19                    # libiconv
         - msys2-libintl >=0.22.5                   # libintl
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-gcc-libs >=15.3.0                  # DSO msys-gcc_s-seh-1.dll
       run_constrained:
         - m2-coreutils                             <0a0
         - m2-msys2-runtime                         <0a0

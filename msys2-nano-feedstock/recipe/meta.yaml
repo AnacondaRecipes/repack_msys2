@@ -33,6 +33,9 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-intl-8.dll                             # [win]
+        - $RPATH/msys-magic-1.dll                            # [win]
+        - $RPATH/msys-ncursesw6.dll                          # [win]
     requirements:
       build:
       host:

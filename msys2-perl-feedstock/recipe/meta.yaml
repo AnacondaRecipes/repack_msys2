@@ -46,6 +46,11 @@ outputs:
         - $RPATH/VERSION.dll                                 # [win]
         - $RPATH/WINHTTP.dll                                 # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-crypt-2.dll                            # [win]
+        - $RPATH/msys-db-6.2.dll                             # [win]
+        - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-gdbm-6.dll                             # [win]
+        - $RPATH/msys-gdbm_compat-4.dll                      # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
       build:
@@ -58,6 +63,9 @@ outputs:
         - msys2-coreutils >=8.32                   # coreutils
         - msys2-bash >=5.3.015                     # sh
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-libdb >=6.2.32                     # DSO msys-db-6.2.dll
+        - msys2-gcc-libs >=15.3.0                  # DSO msys-gcc_s-seh-1.dll
+        - msys2-libgdbm >=1.26                     # DSO msys-gdbm-6.dll
       run_constrained:
         - m2-perl                                  <0a0
         - m2-msys2-runtime                         <0a0

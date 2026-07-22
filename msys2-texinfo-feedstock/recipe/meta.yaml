@@ -39,6 +39,12 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-perl5_42.dll                           # [win]
+        - $RPATH/msys-texinfo-0.dll                          # [win]
+        - $RPATH/msys-texinfo-convert-0.dll                  # [win]
+        - $RPATH/msys-texinfo-convertxs-0.dll                # [win]
+        - $RPATH/msys-texinfoxs-0.dll                        # [win]
     requirements:
       build:
       host:
@@ -48,6 +54,7 @@ outputs:
         - msys2-perl >=5.42.2                      # perl
         - msys2-bash >=5.3.015                     # sh
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-gcc-libs >=15.3.0                  # DSO msys-gcc_s-seh-1.dll
       run_constrained:
         - m2-texinfo                               <0a0
         - m2-msys2-runtime                         <0a0
@@ -70,6 +77,9 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-iconv-2.dll                            # [win]
+        - $RPATH/msys-intl-8.dll                             # [win]
+        - $RPATH/msys-ncursesw6.dll                          # [win]
     requirements:
       build:
       host:
@@ -80,6 +90,7 @@ outputs:
         - msys2-libintl >=0.22.5                   # libintl
         - msys2-ncurses >=6.6                      # ncurses
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-libiconv >=1.19                    # DSO msys-iconv-2.dll
       run_constrained:
         - m2-info                                  <0a0
         - m2-msys2-runtime                         <0a0

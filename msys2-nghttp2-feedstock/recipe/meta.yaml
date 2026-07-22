@@ -39,6 +39,12 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-crypto-3.dll                           # [win]
+        - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-jansson-4.dll                          # [win]
+        - $RPATH/msys-nghttp2-14.dll                         # [win]
+        - $RPATH/msys-ssl-3.dll                              # [win]
+        - $RPATH/msys-stdc++-6.dll                           # [win]
     requirements:
       build:
       host:
@@ -48,6 +54,7 @@ outputs:
         - msys2-jansson >=2.15.0                   # jansson
         - msys2-libnghttp2 =1.69.0                 # libnghttp2=1.69.0
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
+        - msys2-libopenssl >=3.6.3                 # DSO msys-crypto-3.dll
       run_constrained:
         - m2-nghttp2                               <0a0
         - m2-msys2-runtime                         <0a0

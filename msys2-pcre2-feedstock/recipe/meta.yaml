@@ -48,6 +48,13 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-bz2-1.dll                              # [win]
+        - $RPATH/msys-pcre2-16-0.dll                         # [win]
+        - $RPATH/msys-pcre2-32-0.dll                         # [win]
+        - $RPATH/msys-pcre2-8-0.dll                          # [win]
+        - $RPATH/msys-pcre2-posix-3.dll                      # [win]
+        - $RPATH/msys-readline8.dll                          # [win]
+        - $RPATH/msys-z.dll                                  # [win]
     requirements:
       build:
       host:
@@ -172,6 +179,7 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-pcre2-8-0.dll                          # [win]
     requirements:
       build:
       host:
