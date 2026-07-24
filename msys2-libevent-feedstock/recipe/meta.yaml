@@ -39,6 +39,7 @@ outputs:
         - $RPATH/SHELL32.dll                                 # [win]
         - $RPATH/msys-2.0.dll                                # [win]
         - $RPATH/msys-crypto-3.dll                           # [win]
+        - $RPATH/msys-event_core-2-1-7.dll                   # [win]
         - $RPATH/msys-ssl-3.dll                              # [win]
     requirements:
       build:

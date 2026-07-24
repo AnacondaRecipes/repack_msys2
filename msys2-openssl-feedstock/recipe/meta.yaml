@@ -75,6 +75,7 @@ outputs:
         - $RPATH/CRYPT32.dll                                 # [win]
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-crypto-3.dll                           # [win]
     requirements:
       build:
       host:

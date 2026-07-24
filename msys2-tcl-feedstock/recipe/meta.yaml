@@ -39,6 +39,7 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/USER32.dll                                  # [win]
+        - $RPATH/libtcl8.6.dll                               # [win]
         - $RPATH/msys-2.0.dll                                # [win]
     requirements:
       build:

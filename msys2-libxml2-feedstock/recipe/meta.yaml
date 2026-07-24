@@ -39,6 +39,7 @@ outputs:
         - $RPATH/msys-history8.dll                           # [win]
         - $RPATH/msys-iconv-2.dll                            # [win]
         - $RPATH/msys-readline8.dll                          # [win]
+        - $RPATH/msys-xml2-16.dll                            # [win]
         - $RPATH/msys-z.dll                                  # [win]
     requirements:
       build:

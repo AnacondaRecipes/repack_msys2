@@ -87,6 +87,7 @@ outputs:
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/libbz2-1.dll                                # [win]
+        - $RPATH/libminizip-1.dll                            # [win]
         - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:
@@ -161,6 +162,7 @@ outputs:
         - $RPATH/api-ms-win-crt-time-l1-1-0.dll              # [win]
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/libbz2-1.dll                                # [win]
+        - $RPATH/libminizip-1.dll                            # [win]
         - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:

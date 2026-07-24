@@ -37,6 +37,7 @@ outputs:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
         - $RPATH/msys-crypto-3.dll                           # [win]
+        - $RPATH/msys-ngtcp2-16.dll                          # [win]
         - $RPATH/msys-ssl-3.dll                              # [win]
     requirements:
       build:
