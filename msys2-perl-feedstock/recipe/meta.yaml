@@ -51,6 +51,7 @@ outputs:
         - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
         - $RPATH/msys-gdbm-6.dll                             # [win]
         - $RPATH/msys-gdbm_compat-4.dll                      # [win]
+        - $RPATH/msys-perl5_42.dll                           # [win]
         - $RPATH/ole32.dll                                   # [win]
     requirements:
       build:

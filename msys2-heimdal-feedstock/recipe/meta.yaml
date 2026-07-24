@@ -89,12 +89,22 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-asn1-8.dll                             # [win]
+        - $RPATH/msys-com_err-1.dll                          # [win]
         - $RPATH/msys-crypt-2.dll                            # [win]
         - $RPATH/msys-crypto-3.dll                           # [win]
         - $RPATH/msys-db-6.2.dll                             # [win]
         - $RPATH/msys-edit-0.dll                             # [win]
         - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-hcrypto-4.dll                          # [win]
+        - $RPATH/msys-hdb-9.dll                              # [win]
+        - $RPATH/msys-heimbase-1.dll                         # [win]
+        - $RPATH/msys-heimntlm-0.dll                         # [win]
+        - $RPATH/msys-hx509-5.dll                            # [win]
+        - $RPATH/msys-krb5-26.dll                            # [win]
+        - $RPATH/msys-roken-18.dll                           # [win]
         - $RPATH/msys-sqlite3-0.dll                          # [win]
+        - $RPATH/msys-wind-0.dll                             # [win]
     requirements:
       build:
       host:

@@ -148,7 +148,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-libcxx                        # mingw-w64-clang-aarch64-cc-libs
+        - clangarm64-libcxx >=22.1.8               # mingw-w64-clang-aarch64-cc-libs
         - clangarm64-llvm-openmp >=22.1.8          # mingw-w64-clang-aarch64-omp
     test:
       commands:
@@ -189,7 +189,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-libcxx                        # mingw-w64-clang-aarch64-cc-libs
+        - clangarm64-libcxx >=22.1.8               # mingw-w64-clang-aarch64-cc-libs
         - clangarm64-llvm-openmp >=22.1.8          # mingw-w64-clang-aarch64-omp
     test:
       commands:

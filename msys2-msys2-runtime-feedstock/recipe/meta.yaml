@@ -45,6 +45,7 @@ outputs:
         - $RPATH/WININET.dll                                 # [win]
         - $RPATH/dbghelp.dll                                 # [win]
         - $RPATH/msvcrt.dll                                  # [win]
+        - $RPATH/msys-2.0.dll                                # [win]
         - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
         - $RPATH/msys-intl-8.dll                             # [win]
         - $RPATH/msys-z.dll                                  # [win]

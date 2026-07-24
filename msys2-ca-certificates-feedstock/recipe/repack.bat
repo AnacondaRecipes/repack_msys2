@@ -1,7 +1,8 @@
 echo "Building %PKG_NAME%"
 
-@REM For subpackages, we have named our extracted locations according to the subpackage name
-@REM That's what this %PKG_NAME% is doing - picking the right subfolder to copy
+@REM For subpackages, we have named our extracted locations according to
+@REM the subpackage name. That's what %PKG_NAME% is doing - picking the
+@REM right subfolder to copy
 
 set src="%SRC_DIR%\%PKG_NAME%"
 

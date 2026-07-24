@@ -39,6 +39,9 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-brotlicommon-1.dll                     # [win]
+        - $RPATH/msys-brotlidec-1.dll                        # [win]
+        - $RPATH/msys-brotlienc-1.dll                        # [win]
     requirements:
       build:
       host:

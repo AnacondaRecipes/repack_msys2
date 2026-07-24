@@ -37,6 +37,7 @@ outputs:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
         - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
+        - $RPATH/msys-gmp-10.dll                             # [win]
         - $RPATH/msys-stdc++-6.dll                           # [win]
     requirements:
       build:

@@ -92,9 +92,11 @@ outputs:
       missing_dso_whitelist:
         - $RPATH/KERNEL32.dll                                # [win]
         - $RPATH/msys-2.0.dll                                # [win]
+        - $RPATH/msys-blkid-1.dll                            # [win]
         - $RPATH/msys-gcc_s-seh-1.dll                        # [win]
         - $RPATH/msys-intl-8.dll                             # [win]
         - $RPATH/msys-sqlite3-0.dll                          # [win]
+        - $RPATH/msys-uuid-1.dll                             # [win]
     requirements:
       build:
       host:

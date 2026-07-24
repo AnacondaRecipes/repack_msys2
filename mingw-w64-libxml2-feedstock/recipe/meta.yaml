@@ -55,8 +55,8 @@ outputs:
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/bcrypt.dll                                  # [win]
         - $RPATH/libiconv-2.dll                              # [win]
-        - $RPATH/libxml2-16.dll                              # [win]
         - $RPATH/libpython3.14.dll                           # [win]
+        - $RPATH/libxml2-16.dll                              # [win]
         - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:
@@ -123,8 +123,8 @@ outputs:
         - $RPATH/api-ms-win-crt-utility-l1-1-0.dll           # [win]
         - $RPATH/bcrypt.dll                                  # [win]
         - $RPATH/libiconv-2.dll                              # [win]
-        - $RPATH/libxml2-16.dll                              # [win]
         - $RPATH/libpython3.14.dll                           # [win]
+        - $RPATH/libxml2-16.dll                              # [win]
         - $RPATH/zlib1.dll                                   # [win]
     requirements:
       build:
