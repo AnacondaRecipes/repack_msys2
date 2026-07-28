@@ -56,7 +56,7 @@ outputs:
         - msys2-mpc >=1.4.1                        # mpc
         - msys2-mpfr >=4.2.2                       # mpfr
         - msys2-zlib >=1.3.2                       # zlib
-        - msys2-runtime-devel >=3.6.9              # msys2-runtime-devel
+        - msys2-msys2-runtime-devel >=3.6.9        # msys2-runtime-devel
         - msys2-msys2-w32api-headers >=14.0.0.r0.g9b3dd0125 # msys2-w32api-headers
         - msys2-msys2-w32api-runtime >=14.0.0.r0.g9b3dd0125 # msys2-w32api-runtime
         - msys2-windows-default-manifest >=6.4     # windows-default-manifest
