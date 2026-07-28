@@ -1,5 +1,5 @@
 # mutex package to keep only one MSYS2 env in a given conda env
-# using the MSYS2 package epoch: Jul 28 2026 14:00:00 UTC
+# using the MSYS2 package epoch: Jul 01 2026 06:00:00 UTC
 package:
   name: msys2-msys-mutex
   version: 1.0
