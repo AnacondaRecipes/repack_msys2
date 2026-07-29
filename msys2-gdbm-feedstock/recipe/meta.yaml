@@ -48,7 +48,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libgdbm =1.26                      # libgdbm=1.26
+        - {{ pin_subpackage('msys2-libgdbm') }}    # libgdbm=1.26
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libintl >=0.22.5                   # DSO msys-intl-8.dll
         - msys2-libreadline >=8.3.003              # DSO msys-readline8.dll
@@ -113,7 +113,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libgdbm =1.26                      # libgdbm=1.26
+        - {{ pin_subpackage('msys2-libgdbm') }}    # libgdbm=1.26
         - msys2-libreadline-devel >=8.3.003        # libreadline-devel
       run_constrained:
         - m2-libgdbm-devel                         <0a0

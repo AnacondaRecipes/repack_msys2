@@ -67,7 +67,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libnghttp3 >=1.17.0                # libnghttp3
+        - {{ pin_subpackage('msys2-libnghttp3') }} # libnghttp3
       run_constrained:
         - m2-libnghttp3-devel                      <0a0
         - m2-msys2-runtime                         <0a0

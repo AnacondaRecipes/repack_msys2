@@ -72,7 +72,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libtasn1 =4.21.0                   # libtasn1=4.21.0
+        - {{ pin_subpackage('msys2-libtasn1') }}   # libtasn1=4.21.0
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libtasn1-devel                        <0a0

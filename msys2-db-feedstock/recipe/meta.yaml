@@ -49,7 +49,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libdb =6.2.32                      # libdb=6.2.32
+        - {{ pin_subpackage('msys2-libdb') }}      # libdb=6.2.32
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-db                                    <0a0
@@ -104,7 +104,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libdb =6.2.32                      # libdb=6.2.32
+        - {{ pin_subpackage('msys2-libdb') }}      # libdb=6.2.32
       run_constrained:
         - m2-libdb-devel                           <0a0
         - m2-msys2-runtime                         <0a0

@@ -93,7 +93,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-libiconv =1.19                    # mingw-w64-ucrt-x86_64-libiconv=1.19-1
+        - {{ pin_subpackage('ucrt64-libiconv') }}  # mingw-w64-ucrt-x86_64-libiconv=1.19-1
         - ucrt64-gettext-runtime >=1.0             # mingw-w64-ucrt-x86_64-gettext-runtime
       run_constrained:
         - m2w64-iconv                              <0a0
@@ -165,7 +165,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-libiconv =1.19                # mingw-w64-clang-aarch64-libiconv=1.19-1
+        - {{ pin_subpackage('clangarm64-libiconv') }} # mingw-w64-clang-aarch64-libiconv=1.19-1
         - clangarm64-gettext-runtime >=1.0         # mingw-w64-clang-aarch64-gettext-runtime
     test:
       commands:

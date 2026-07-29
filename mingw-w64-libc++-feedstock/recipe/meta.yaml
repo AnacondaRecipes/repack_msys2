@@ -60,7 +60,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-libcxx                            # mingw-w64-ucrt-x86_64-cc-libs
+        - {{ pin_subpackage('ucrt64-libcxx') }}    # mingw-w64-ucrt-x86_64-cc-libs
         - ucrt64-gcc-libs >=16.1.0                 # DSO libgcc_s_seh-1.dll
       run_constrained:
         - m2w64-libcxx                             <0a0
@@ -96,7 +96,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-libcxx                            # mingw-w64-ucrt-x86_64-cc-libs
+        - {{ pin_subpackage('ucrt64-libcxx') }}    # mingw-w64-ucrt-x86_64-cc-libs
       run_constrained:
         - m2w64-libunwind                          <0a0
     test:
@@ -134,7 +134,7 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-libunwind >=22.1.8            # mingw-w64-clang-aarch64-libunwind
+        - {{ pin_subpackage('clangarm64-libunwind') }} # mingw-w64-clang-aarch64-libunwind
     test:
       commands:
         - IF NOT EXIST %PREFIX%\Library\clangarm64\bin\libc++.dll EXIT /B 1      # [win]

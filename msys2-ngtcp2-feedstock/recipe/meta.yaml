@@ -71,7 +71,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libngtcp2 >=1.24.0                 # libngtcp2
+        - {{ pin_subpackage('msys2-libngtcp2') }}  # libngtcp2
         - msys2-openssl-devel >=3.6.3              # openssl-devel
       run_constrained:
         - m2-libngtcp2-devel                       <0a0

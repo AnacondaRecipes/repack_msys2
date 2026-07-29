@@ -73,7 +73,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gmp =6.3.0                         # gmp=6.3.0
+        - {{ pin_subpackage('msys2-gmp') }}        # gmp=6.3.0
       run_constrained:
         - m2-gmp-devel                             <0a0
         - m2-msys2-runtime                         <0a0

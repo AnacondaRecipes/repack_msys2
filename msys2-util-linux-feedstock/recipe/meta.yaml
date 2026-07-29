@@ -56,7 +56,7 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
         - msys2-coreutils >=8.32                   # coreutils
-        - msys2-libutil-linux >=2.40.2             # libutil-linux
+        - {{ pin_subpackage('msys2-libutil-linux') }} # libutil-linux
         - msys2-libiconv >=1.19                    # libiconv
         - msys2-libreadline >=8.3.003              # libreadline
         - msys2-libsqlite >=3.53.3                 # libsqlite
@@ -168,7 +168,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libutil-linux >=2.40.2             # libutil-linux
+        - {{ pin_subpackage('msys2-libutil-linux') }} # libutil-linux
       run_constrained:
         - m2-libutil-linux-devel                   <0a0
         - m2-msys2-runtime                         <0a0

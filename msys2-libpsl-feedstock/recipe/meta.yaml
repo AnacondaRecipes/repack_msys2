@@ -75,7 +75,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libpsl =0.21.5                     # libpsl=0.21.5
+        - {{ pin_subpackage('msys2-libpsl') }}     # libpsl=0.21.5
         - msys2-libidn2-devel >=2.3.8              # libidn2-devel
         - msys2-libunistring >=1.4.2               # libunistring
       run_constrained:

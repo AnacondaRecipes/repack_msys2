@@ -47,7 +47,7 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
-        - msys2-libzstd >=1.5.7                    # libzstd
+        - {{ pin_subpackage('msys2-libzstd') }}    # libzstd
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-zstd                                  <0a0
@@ -106,7 +106,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libzstd =1.5.7                     # libzstd=1.5.7
+        - {{ pin_subpackage('msys2-libzstd') }}    # libzstd=1.5.7
       run_constrained:
         - m2-libzstd-devel                         <0a0
         - m2-msys2-runtime                         <0a0

@@ -50,7 +50,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libopenssl >=3.6.3                 # libopenssl
+        - {{ pin_subpackage('msys2-libopenssl') }} # libopenssl
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-openssl                               <0a0
@@ -105,7 +105,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libopenssl =3.6.3                  # libopenssl=3.6.3
+        - {{ pin_subpackage('msys2-libopenssl') }} # libopenssl=3.6.3
       run_constrained:
         - m2-openssl-devel                         <0a0
         - m2-msys2-runtime                         <0a0

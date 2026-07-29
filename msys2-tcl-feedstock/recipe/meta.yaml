@@ -72,7 +72,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-tcl =8.6.12                        # tcl=8.6.12
+        - {{ pin_subpackage('msys2-tcl') }}        # tcl=8.6.12
       run_constrained:
         - m2-tcl-devel                             <0a0
         - m2-msys2-runtime                         <0a0

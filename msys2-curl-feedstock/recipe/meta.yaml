@@ -48,7 +48,7 @@ outputs:
       run:
         - msys2-msys-mutex * msys2
         - msys2-ca-certificates >=20250419         # ca-certificates
-        - msys2-libcurl >=8.21.0                   # libcurl
+        - {{ pin_subpackage('msys2-libcurl') }}    # libcurl
         - msys2-libnghttp3 >=1.17.0                # libnghttp3
         - msys2-libngtcp2 >=1.24.0                 # libngtcp2
         - msys2-libunistring >=1.4.2               # libunistring
@@ -135,7 +135,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libcurl =8.21.0                    # libcurl=8.21.0
+        - {{ pin_subpackage('msys2-libcurl') }}    # libcurl=8.21.0
         - msys2-brotli-devel >=1.2.0               # brotli-devel
         - msys2-libidn2-devel >=2.3.8              # libidn2-devel
         - msys2-libnghttp3-devel >=1.17.0          # libnghttp3-devel

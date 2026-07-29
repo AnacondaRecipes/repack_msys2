@@ -47,7 +47,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gcc-libs =15.3.0                   # gcc-libs=15.3.0-1
+        - {{ pin_subpackage('msys2-gcc-libs') }}   # gcc-libs=15.3.0-1
         - msys2-binutils >=2.46.1                  # binutils
         - msys2-gmp >=6.3.0                        # gmp
         - msys2-isl >=0.27                         # isl

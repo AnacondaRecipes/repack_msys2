@@ -91,7 +91,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2 =1.17.0                   # libfido2=1.17.0
+        - {{ pin_subpackage('msys2-libfido2') }}   # libfido2=1.17.0
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libcbor >=0.14.0                   # DSO msys-cbor-0.14.dll
         - msys2-libopenssl >=3.6.3                 # DSO msys-crypto-3.dll
@@ -119,7 +119,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2 =1.17.0                   # libfido2=1.17.0
+        - {{ pin_subpackage('msys2-libfido2') }}   # libfido2=1.17.0
       run_constrained:
         - m2-libfido2-devel                        <0a0
         - m2-msys2-runtime                         <0a0
@@ -143,7 +143,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libfido2-devel =1.17.0             # libfido2-devel=1.17.0
+        - {{ pin_subpackage('msys2-libfido2-devel') }} # libfido2-devel=1.17.0
       run_constrained:
         - m2-libfido2-docs                         <0a0
         - m2-msys2-runtime                         <0a0

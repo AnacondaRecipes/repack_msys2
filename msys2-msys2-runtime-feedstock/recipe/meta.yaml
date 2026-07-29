@@ -112,7 +112,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-msys2-runtime =3.6.9               # msys2-runtime=3.6.9
+        - {{ pin_subpackage('msys2-msys2-runtime') }} # msys2-runtime=3.6.9
       run_constrained:
         - m2-msys2-runtime-devel                   <0a0
         - m2-msys2-runtime                         <0a0

@@ -46,7 +46,7 @@ outputs:
       run:
         - msys2-mingw-w64-mutex * ucrt64
         - ucrt64-crt >=14.0.0.r147.g31bd54ab7      # mingw-w64-ucrt-x86_64-crt
-        - ucrt64-libwinpthread =14.0.0.r147.g31bd54ab7 # mingw-w64-ucrt-x86_64-libwinpthread=14.0.0.r147.g31bd54ab7
+        - {{ pin_subpackage('ucrt64-libwinpthread') }} # mingw-w64-ucrt-x86_64-libwinpthread=14.0.0.r147.g31bd54ab7
       run_constrained:
         - m2w64-winpthreads                        <0a0
     test:
@@ -105,7 +105,7 @@ outputs:
       run:
         - msys2-mingw-w64-mutex * clangarm64
         - clangarm64-crt >=14.0.0.r147.g31bd54ab7  # mingw-w64-clang-aarch64-crt
-        - clangarm64-libwinpthread =14.0.0.r147.g31bd54ab7 # mingw-w64-clang-aarch64-libwinpthread=14.0.0.r147.g31bd54ab7
+        - {{ pin_subpackage('clangarm64-libwinpthread') }} # mingw-w64-clang-aarch64-libwinpthread=14.0.0.r147.g31bd54ab7
     test:
       commands:
         - IF NOT EXIST %PREFIX%\Library\clangarm64\include\pthread.h EXIT /B 1   # [win]

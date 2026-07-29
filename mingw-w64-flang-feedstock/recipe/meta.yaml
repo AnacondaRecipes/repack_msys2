@@ -67,7 +67,7 @@ outputs:
         - ucrt64-clang >=22.1.8                    # mingw-w64-ucrt-x86_64-clang
         - ucrt64-llvm >=22.1.8                     # mingw-w64-ucrt-x86_64-llvm
         - ucrt64-mlir >=22.1.8                     # mingw-w64-ucrt-x86_64-mlir
-        - ucrt64-flang-rt >=22.1.8                 # mingw-w64-ucrt-x86_64-flang-rt
+        - {{ pin_subpackage('ucrt64-flang-rt') }}  # mingw-w64-ucrt-x86_64-flang-rt
         - ucrt64-llvm-libs >=22.1.8                # DSO libLLVM-22.dll
         - ucrt64-clang-libs >=22.1.8               # DSO libclang-cpp.dll
         - ucrt64-gcc-libs >=16.1.0                 # DSO libgcc_s_seh-1.dll
@@ -145,7 +145,7 @@ outputs:
         - clangarm64-clang >=22.1.8                # mingw-w64-clang-aarch64-clang
         - clangarm64-llvm >=22.1.8                 # mingw-w64-clang-aarch64-llvm
         - clangarm64-mlir >=22.1.8                 # mingw-w64-clang-aarch64-mlir
-        - clangarm64-flang-rt >=22.1.8             # mingw-w64-clang-aarch64-flang-rt
+        - {{ pin_subpackage('clangarm64-flang-rt') }} # mingw-w64-clang-aarch64-flang-rt
         - clangarm64-llvm-libs >=22.1.8            # DSO libLLVM-22.dll
         - clangarm64-libcxx                        # DSO libc++.dll
         - clangarm64-clang-libs >=22.1.8           # DSO libclang-cpp.dll

@@ -161,8 +161,8 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * ucrt64
-        - ucrt64-gettext-runtime >=1.0             # mingw-w64-ucrt-x86_64-gettext-runtime
-        - ucrt64-gettext-libtextstyle >=1.0        # mingw-w64-ucrt-x86_64-gettext-libtextstyle
+        - {{ pin_subpackage('ucrt64-gettext-runtime') }} # mingw-w64-ucrt-x86_64-gettext-runtime
+        - {{ pin_subpackage('ucrt64-gettext-libtextstyle') }} # mingw-w64-ucrt-x86_64-gettext-libtextstyle
         - ucrt64-libcxx                            # mingw-w64-ucrt-x86_64-cc-libs
         - ucrt64-libiconv >=1.19                   # mingw-w64-ucrt-x86_64-libiconv
       run_constrained:
@@ -309,8 +309,8 @@ outputs:
       host:
       run:
         - msys2-mingw-w64-mutex * clangarm64
-        - clangarm64-gettext-runtime >=1.0         # mingw-w64-clang-aarch64-gettext-runtime
-        - clangarm64-gettext-libtextstyle >=1.0    # mingw-w64-clang-aarch64-gettext-libtextstyle
+        - {{ pin_subpackage('clangarm64-gettext-runtime') }} # mingw-w64-clang-aarch64-gettext-runtime
+        - {{ pin_subpackage('clangarm64-gettext-libtextstyle') }} # mingw-w64-clang-aarch64-gettext-libtextstyle
         - clangarm64-libcxx                        # mingw-w64-clang-aarch64-cc-libs
         - clangarm64-libiconv >=1.19               # mingw-w64-clang-aarch64-libiconv
     test:

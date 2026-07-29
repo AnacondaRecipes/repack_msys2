@@ -71,7 +71,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-mpfr =4.2.2                        # mpfr=4.2.2
+        - {{ pin_subpackage('msys2-mpfr') }}       # mpfr=4.2.2
         - msys2-gmp-devel >=6.3.0                  # gmp-devel
       run_constrained:
         - m2-mpfr-devel                            <0a0

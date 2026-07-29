@@ -50,7 +50,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libp11-kit >=0.26.2                # libp11-kit
+        - {{ pin_subpackage('msys2-libp11-kit') }} # libp11-kit
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libffi >=3.5.2                     # DSO msys-ffi-8.dll
         - msys2-gcc-libs >=15.3.0                  # DSO msys-gcc_s-seh-1.dll
@@ -116,7 +116,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libp11-kit >=0.26.2                # libp11-kit
+        - {{ pin_subpackage('msys2-libp11-kit') }} # libp11-kit
       run_constrained:
         - m2-libp11-kit-devel                      <0a0
         - m2-msys2-runtime                         <0a0

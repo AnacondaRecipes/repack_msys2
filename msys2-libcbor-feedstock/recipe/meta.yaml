@@ -66,7 +66,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libcbor =0.14.0                    # libcbor=0.14.0
+        - {{ pin_subpackage('msys2-libcbor') }}    # libcbor=0.14.0
       run_constrained:
         - m2-libcbor-devel                         <0a0
         - m2-msys2-runtime                         <0a0

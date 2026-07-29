@@ -53,7 +53,7 @@ outputs:
         - msys2-msys-mutex * msys2
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
         - msys2-jansson >=2.15.0                   # jansson
-        - msys2-libnghttp2 =1.69.0                 # libnghttp2=1.69.0
+        - {{ pin_subpackage('msys2-libnghttp2') }} # libnghttp2=1.69.0
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libopenssl >=3.6.3                 # DSO msys-crypto-3.dll
       run_constrained:
@@ -107,7 +107,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libnghttp2 =1.69.0                 # libnghttp2=1.69.0
+        - {{ pin_subpackage('msys2-libnghttp2') }} # libnghttp2=1.69.0
         - msys2-jansson-devel >=2.15.0             # jansson-devel
         - msys2-libevent-devel >=2.1.12            # libevent-devel
         - msys2-openssl-devel >=3.6.3              # openssl-devel

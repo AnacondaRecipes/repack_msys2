@@ -74,7 +74,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-brotli >=1.2.0                     # brotli
+        - {{ pin_subpackage('msys2-brotli') }}     # brotli
       run_constrained:
         - m2-brotli-devel                          <0a0
         - m2-msys2-runtime                         <0a0

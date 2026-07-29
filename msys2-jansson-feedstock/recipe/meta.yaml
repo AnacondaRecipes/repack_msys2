@@ -66,7 +66,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-jansson =2.15.0                    # jansson=2.15.0
+        - {{ pin_subpackage('msys2-jansson') }}    # jansson=2.15.0
       run_constrained:
         - m2-jansson-devel                         <0a0
         - m2-msys2-runtime                         <0a0

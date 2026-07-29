@@ -74,7 +74,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-ncurses =6.6                       # ncurses=6.6
+        - {{ pin_subpackage('msys2-ncurses') }}    # ncurses=6.6
       run_constrained:
         - m2-ncurses-devel                         <0a0
         - m2-msys2-runtime                         <0a0

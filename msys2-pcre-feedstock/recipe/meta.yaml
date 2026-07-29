@@ -67,11 +67,11 @@ outputs:
         - msys2-libreadline >=8.3.003              # libreadline
         - msys2-libbz2 >=1.0.8                     # libbz2
         - msys2-zlib >=1.3.2                       # zlib
-        - msys2-libpcre >=8.45                     # libpcre
-        - msys2-libpcre16 >=8.45                   # libpcre16
-        - msys2-libpcre32 >=8.45                   # libpcre32
-        - msys2-libpcrecpp >=8.45                  # libpcrecpp
-        - msys2-libpcreposix >=8.45                # libpcreposix
+        - {{ pin_subpackage('msys2-libpcre') }}    # libpcre
+        - {{ pin_subpackage('msys2-libpcre16') }}  # libpcre16
+        - {{ pin_subpackage('msys2-libpcre32') }}  # libpcre32
+        - {{ pin_subpackage('msys2-libpcrecpp') }} # libpcrecpp
+        - {{ pin_subpackage('msys2-libpcreposix') }} # libpcreposix
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-pcre                                  <0a0
@@ -188,7 +188,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libpcre >=8.45                     # libpcre
+        - {{ pin_subpackage('msys2-libpcre') }}    # libpcre
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
@@ -218,7 +218,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libpcre >=8.45                     # libpcre
+        - {{ pin_subpackage('msys2-libpcre') }}    # libpcre
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
       run_constrained:
         - m2-libpcreposix                          <0a0
@@ -243,11 +243,11 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libpcre =8.45                      # libpcre=8.45
-        - msys2-libpcre16 =8.45                    # libpcre16=8.45
-        - msys2-libpcre32 =8.45                    # libpcre32=8.45
-        - msys2-libpcreposix =8.45                 # libpcreposix=8.45
-        - msys2-libpcrecpp =8.45                   # libpcrecpp=8.45
+        - {{ pin_subpackage('msys2-libpcre') }}    # libpcre=8.45
+        - {{ pin_subpackage('msys2-libpcre16') }}  # libpcre16=8.45
+        - {{ pin_subpackage('msys2-libpcre32') }}  # libpcre32=8.45
+        - {{ pin_subpackage('msys2-libpcreposix') }} # libpcreposix=8.45
+        - {{ pin_subpackage('msys2-libpcrecpp') }} # libpcrecpp=8.45
       run_constrained:
         - m2-pcre-devel                            <0a0
         - m2-msys2-runtime                         <0a0

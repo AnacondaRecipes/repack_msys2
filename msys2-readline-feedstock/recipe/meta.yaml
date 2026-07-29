@@ -69,7 +69,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libreadline =8.3.003               # libreadline=8.3.003
+        - {{ pin_subpackage('msys2-libreadline') }} # libreadline=8.3.003
         - msys2-ncurses-devel >=6.6                # ncurses-devel
       run_constrained:
         - m2-libreadline-devel                     <0a0

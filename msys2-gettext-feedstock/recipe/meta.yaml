@@ -55,9 +55,9 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-libintl >=0.22.5                   # libintl
-        - msys2-libgettextpo >=0.22.5              # libgettextpo
-        - msys2-libasprintf >=0.22.5               # libasprintf
+        - {{ pin_subpackage('msys2-libintl') }}    # libintl
+        - {{ pin_subpackage('msys2-libgettextpo') }} # libgettextpo
+        - {{ pin_subpackage('msys2-libasprintf') }} # libasprintf
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libiconv >=1.19                    # DSO msys-iconv-2.dll
       run_constrained:
@@ -102,7 +102,7 @@ outputs:
       host:
       run:
         - msys2-msys-mutex * msys2
-        - msys2-gettext =0.22.5                    # gettext=0.22.5
+        - {{ pin_subpackage('msys2-gettext') }}    # gettext=0.22.5
         - msys2-libiconv-devel >=1.19              # libiconv-devel
       run_constrained:
         - m2-gettext-devel                         <0a0
@@ -135,7 +135,7 @@ outputs:
         - msys2-gcc-libs >=15.3.0                  # gcc-libs
         - msys2-msys2-runtime >=3.6.9              # DSO msys-2.0.dll
         - msys2-libiconv >=1.19                    # DSO msys-iconv-2.dll
-        - msys2-libintl >=0.22.5                   # DSO msys-intl-8.dll
+        - {{ pin_subpackage('msys2-libintl') }}    # DSO msys-intl-8.dll
       run_constrained:
         - m2-libgettextpo                          <0a0
         - m2-msys2-runtime                         <0a0
